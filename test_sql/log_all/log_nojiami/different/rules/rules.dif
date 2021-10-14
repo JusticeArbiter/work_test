@@ -1,0 +1,25 @@
+1586c1586,1591
+< dual| SELECT 'X'::character varying AS dummy;
+---
+> iexit| SELECT ih.name,
+>     ih.thepath,
+>     interpt_pp(ih.thepath, r.thepath) AS exit
+>    FROM ihighway ih,
+>     ramp r
+>   WHERE (ih.thepath ## r.thepath);
+2783c2788
+< NOTICE:  00000: merging column "id" with inherited definition
+---
+> NOTICE:  merging column "id" with inherited definition
+2786c2791
+< NOTICE:  00000: merging column "id" with inherited definition
+---
+> NOTICE:  merging column "id" with inherited definition
+2789c2794
+< NOTICE:  00000: merging column "id" with inherited definition
+---
+> NOTICE:  merging column "id" with inherited definition
+3048d3052
+< Replica Identity: FULL
+3079d3082
+< Replica Identity: FULL

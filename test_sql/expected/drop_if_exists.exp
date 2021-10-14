@@ -1,0 +1,393 @@
+--
+-- IF EXISTS tests
+--
+-- table (will be really dropped at the end)
+DROP TABLE test_exists;
+ERROR:  42P01: table "test_exists" does not exist
+DROP TABLE IF EXISTS test_exists;
+NOTICE:  00000: table "test_exists" does not exist, skipping
+DROP TABLE
+CREATE TABLE test_exists (a int, b text);
+CREATE TABLE
+-- view
+DROP VIEW test_view_exists;
+ERROR:  42P01: view "test_view_exists" does not exist
+DROP VIEW IF EXISTS test_view_exists;
+NOTICE:  00000: view "test_view_exists" does not exist, skipping
+DROP VIEW
+CREATE VIEW test_view_exists AS select * from test_exists;
+CREATE VIEW
+DROP VIEW IF EXISTS test_view_exists;
+DROP VIEW
+DROP VIEW test_view_exists;
+ERROR:  42P01: view "test_view_exists" does not exist
+-- index
+DROP INDEX test_index_exists;
+ERROR:  42704: index "test_index_exists" does not exist
+DROP INDEX IF EXISTS test_index_exists;
+NOTICE:  00000: index "test_index_exists" does not exist, skipping
+DROP INDEX
+CREATE INDEX test_index_exists on test_exists(a);
+CREATE INDEX
+DROP INDEX IF EXISTS test_index_exists;
+DROP INDEX
+DROP INDEX test_index_exists;
+ERROR:  42704: index "test_index_exists" does not exist
+-- sequence
+DROP SEQUENCE test_sequence_exists;
+ERROR:  42P01: sequence "test_sequence_exists" does not exist
+DROP SEQUENCE IF EXISTS test_sequence_exists;
+NOTICE:  00000: sequence "test_sequence_exists" does not exist, skipping
+DROP SEQUENCE
+CREATE SEQUENCE test_sequence_exists;
+CREATE SEQUENCE
+DROP SEQUENCE IF EXISTS test_sequence_exists;
+DROP SEQUENCE
+DROP SEQUENCE test_sequence_exists;
+ERROR:  42P01: sequence "test_sequence_exists" does not exist
+-- schema
+DROP SCHEMA test_schema_exists;
+ERROR:  3F000: schema "test_schema_exists" does not exist
+DROP SCHEMA IF EXISTS test_schema_exists;
+NOTICE:  00000: schema "test_schema_exists" does not exist, skipping
+DROP SCHEMA
+CREATE SCHEMA test_schema_exists;
+CREATE SCHEMA
+DROP SCHEMA IF EXISTS test_schema_exists;
+DROP SCHEMA
+DROP SCHEMA test_schema_exists;
+ERROR:  3F000: schema "test_schema_exists" does not exist
+-- type
+DROP TYPE test_type_exists;
+ERROR:  42704: type "test_type_exists" does not exist
+DROP TYPE IF EXISTS test_type_exists;
+NOTICE:  00000: type "test_type_exists" does not exist, skipping
+DROP TYPE
+CREATE type test_type_exists as (a int, b text);
+CREATE TYPE
+DROP TYPE IF EXISTS test_type_exists;
+DROP TYPE
+DROP TYPE test_type_exists;
+ERROR:  42704: type "test_type_exists" does not exist
+-- domain
+DROP DOMAIN test_domain_exists;
+ERROR:  42704: type "test_domain_exists" does not exist
+DROP DOMAIN IF EXISTS test_domain_exists;
+NOTICE:  00000: type "test_domain_exists" does not exist, skipping
+DROP DOMAIN
+CREATE domain test_domain_exists as int not null check (value > 0);
+CREATE DOMAIN
+DROP DOMAIN IF EXISTS test_domain_exists;
+DROP DOMAIN
+DROP DOMAIN test_domain_exists;
+ERROR:  42704: type "test_domain_exists" does not exist
+---
+--- role/user/group
+---
+CREATE USER tu1;
+CREATE ROLE
+CREATE ROLE tr1;
+CREATE ROLE
+CREATE GROUP tg1;
+CREATE ROLE
+DROP USER tu2;
+ERROR:  42704: role "tu2" does not exist
+DROP USER IF EXISTS tu1, tu2;
+NOTICE:  00000: role "tu2" does not exist, skipping
+DROP ROLE
+DROP USER tu1;
+ERROR:  42704: role "tu1" does not exist
+DROP ROLE tr2;
+ERROR:  42704: role "tr2" does not exist
+DROP ROLE IF EXISTS tr1, tr2;
+NOTICE:  00000: role "tr2" does not exist, skipping
+DROP ROLE
+DROP ROLE tr1;
+ERROR:  42704: role "tr1" does not exist
+DROP GROUP tg2;
+ERROR:  42704: role "tg2" does not exist
+DROP GROUP IF EXISTS tg1, tg2;
+NOTICE:  00000: role "tg2" does not exist, skipping
+DROP ROLE
+DROP GROUP tg1;
+ERROR:  42704: role "tg1" does not exist
+-- collation
+DROP COLLATION IF EXISTS test_collation_exists;
+NOTICE:  00000: collation "test_collation_exists" does not exist, skipping
+DROP COLLATION
+-- conversion
+DROP CONVERSION test_conversion_exists;
+ERROR:  42704: conversion "test_conversion_exists" does not exist
+DROP CONVERSION IF EXISTS test_conversion_exists;
+NOTICE:  00000: conversion "test_conversion_exists" does not exist, skipping
+DROP CONVERSION
+CREATE CONVERSION test_conversion_exists
+    FOR 'LATIN1' TO 'UTF8' FROM iso8859_1_to_utf8;
+CREATE CONVERSION
+DROP CONVERSION test_conversion_exists;
+DROP CONVERSION
+-- text search parser
+DROP TEXT SEARCH PARSER test_tsparser_exists;
+ERROR:  42704: text search parser "test_tsparser_exists" does not exist
+DROP TEXT SEARCH PARSER IF EXISTS test_tsparser_exists;
+NOTICE:  00000: text search parser "test_tsparser_exists" does not exist, skipping
+DROP TEXT SEARCH PARSER
+-- text search dictionary
+DROP TEXT SEARCH DICTIONARY test_tsdict_exists;
+ERROR:  42704: text search dictionary "test_tsdict_exists" does not exist
+DROP TEXT SEARCH DICTIONARY IF EXISTS test_tsdict_exists;
+NOTICE:  00000: text search dictionary "test_tsdict_exists" does not exist, skipping
+DROP TEXT SEARCH DICTIONARY
+CREATE TEXT SEARCH DICTIONARY test_tsdict_exists (
+        Template=ispell,
+        DictFile=ispell_sample,
+        AffFile=ispell_sample
+);
+CREATE TEXT SEARCH DICTIONARY
+DROP TEXT SEARCH DICTIONARY test_tsdict_exists;
+DROP TEXT SEARCH DICTIONARY
+-- test search template
+DROP TEXT SEARCH TEMPLATE test_tstemplate_exists;
+ERROR:  42704: text search template "test_tstemplate_exists" does not exist
+DROP TEXT SEARCH TEMPLATE IF EXISTS test_tstemplate_exists;
+NOTICE:  00000: text search template "test_tstemplate_exists" does not exist, skipping
+DROP TEXT SEARCH TEMPLATE
+-- text search configuration
+DROP TEXT SEARCH CONFIGURATION test_tsconfig_exists;
+ERROR:  42704: text search configuration "test_tsconfig_exists" does not exist
+DROP TEXT SEARCH CONFIGURATION IF EXISTS test_tsconfig_exists;
+NOTICE:  00000: text search configuration "test_tsconfig_exists" does not exist, skipping
+DROP TEXT SEARCH CONFIGURATION
+CREATE TEXT SEARCH CONFIGURATION test_tsconfig_exists (COPY=english);
+CREATE TEXT SEARCH CONFIGURATION
+DROP TEXT SEARCH CONFIGURATION test_tsconfig_exists;
+DROP TEXT SEARCH CONFIGURATION
+-- extension
+DROP EXTENSION test_extension_exists;
+ERROR:  42704: extension "test_extension_exists" does not exist
+DROP EXTENSION IF EXISTS test_extension_exists;
+NOTICE:  00000: extension "test_extension_exists" does not exist, skipping
+DROP EXTENSION
+-- functions
+DROP FUNCTION test_function_exists();
+ERROR:  42883: function test_function_exists() does not exist
+DROP FUNCTION IF EXISTS test_function_exists();
+NOTICE:  00000: function test_function_exists() does not exist, skipping
+DROP FUNCTION
+DROP FUNCTION test_function_exists(int, text, int[]);
+ERROR:  42883: function test_function_exists(integer, text, integer[]) does not exist
+DROP FUNCTION IF EXISTS test_function_exists(int, text, int[]);
+NOTICE:  00000: function test_function_exists(pg_catalog.int4,text,pg_catalog.int4[]) does not exist, skipping
+DROP FUNCTION
+-- aggregate
+DROP AGGREGATE test_aggregate_exists(*);
+ERROR:  42883: aggregate test_aggregate_exists(*) does not exist
+DROP AGGREGATE IF EXISTS test_aggregate_exists(*);
+NOTICE:  00000: aggregate test_aggregate_exists() does not exist, skipping
+DROP AGGREGATE
+DROP AGGREGATE test_aggregate_exists(int);
+ERROR:  42883: aggregate test_aggregate_exists(integer) does not exist
+DROP AGGREGATE IF EXISTS test_aggregate_exists(int);
+NOTICE:  00000: aggregate test_aggregate_exists(pg_catalog.int4) does not exist, skipping
+DROP AGGREGATE
+-- operator
+DROP OPERATOR @#@ (int, int);
+ERROR:  42883: operator does not exist: integer @#@ integer
+DROP OPERATOR IF EXISTS @#@ (int, int);
+NOTICE:  00000: operator @#@ does not exist, skipping
+DROP OPERATOR
+CREATE OPERATOR @#@
+        (leftarg = int8, rightarg = int8, procedure = int8xor);
+CREATE OPERATOR
+DROP OPERATOR @#@ (int8, int8);
+DROP OPERATOR
+-- language
+DROP LANGUAGE test_language_exists;
+ERROR:  42704: language "test_language_exists" does not exist
+DROP LANGUAGE IF EXISTS test_language_exists;
+NOTICE:  00000: language "test_language_exists" does not exist, skipping
+DROP LANGUAGE
+-- cast
+DROP CAST (text AS text);
+ERROR:  42704: cast from type text to type text does not exist
+DROP CAST IF EXISTS (text AS text);
+NOTICE:  00000: cast from type text to type text does not exist, skipping
+DROP CAST
+-- trigger
+DROP TRIGGER test_trigger_exists ON test_exists;
+ERROR:  42704: trigger "test_trigger_exists" for table "test_exists" does not exist
+DROP TRIGGER IF EXISTS test_trigger_exists ON test_exists;
+NOTICE:  00000: trigger "test_trigger_exists" for relation "test_exists" does not exist, skipping
+DROP TRIGGER
+DROP TRIGGER test_trigger_exists ON no_such_table;
+ERROR:  42P01: relation "no_such_table" does not exist
+DROP TRIGGER IF EXISTS test_trigger_exists ON no_such_table;
+NOTICE:  00000: relation "no_such_table" does not exist, skipping
+DROP TRIGGER
+DROP TRIGGER test_trigger_exists ON no_such_schema.no_such_table;
+ERROR:  3F000: schema "no_such_schema" does not exist
+DROP TRIGGER IF EXISTS test_trigger_exists ON no_such_schema.no_such_table;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER test_trigger_exists
+    BEFORE UPDATE ON test_exists
+    FOR EACH ROW EXECUTE PROCEDURE suppress_redundant_updates_trigger();
+CREATE TRIGGER
+DROP TRIGGER test_trigger_exists ON test_exists;
+DROP TRIGGER
+-- rule
+DROP RULE test_rule_exists ON test_exists;
+ERROR:  42704: rule "test_rule_exists" for relation "test_exists" does not exist
+DROP RULE IF EXISTS test_rule_exists ON test_exists;
+NOTICE:  00000: rule "test_rule_exists" for relation "test_exists" does not exist, skipping
+DROP RULE
+DROP RULE test_rule_exists ON no_such_table;
+ERROR:  42P01: relation "no_such_table" does not exist
+DROP RULE IF EXISTS test_rule_exists ON no_such_table;
+NOTICE:  00000: relation "no_such_table" does not exist, skipping
+DROP RULE
+DROP RULE test_rule_exists ON no_such_schema.no_such_table;
+ERROR:  3F000: schema "no_such_schema" does not exist
+DROP RULE IF EXISTS test_rule_exists ON no_such_schema.no_such_table;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP RULE
+CREATE RULE test_rule_exists AS ON INSERT TO test_exists
+    DO INSTEAD
+    INSERT INTO test_exists VALUES (NEW.a, NEW.b || NEW.a::text);
+CREATE RULE
+DROP RULE test_rule_exists ON test_exists;
+DROP RULE
+-- foreign data wrapper
+DROP FOREIGN DATA WRAPPER test_fdw_exists;
+ERROR:  42704: foreign-data wrapper "test_fdw_exists" does not exist
+DROP FOREIGN DATA WRAPPER IF EXISTS test_fdw_exists;
+NOTICE:  00000: foreign-data wrapper "test_fdw_exists" does not exist, skipping
+DROP FOREIGN DATA WRAPPER
+-- foreign server
+DROP SERVER test_server_exists;
+ERROR:  42704: server "test_server_exists" does not exist
+DROP SERVER IF EXISTS test_server_exists;
+NOTICE:  00000: server "test_server_exists" does not exist, skipping
+DROP SERVER
+-- operator class
+DROP OPERATOR CLASS test_operator_class USING btree;
+ERROR:  42704: operator class "test_operator_class" does not exist for access method "btree"
+DROP OPERATOR CLASS IF EXISTS test_operator_class USING btree;
+NOTICE:  00000: operator class "test_operator_class" does not exist for access method "btree", skipping
+DROP OPERATOR CLASS
+DROP OPERATOR CLASS test_operator_class USING no_such_am;
+ERROR:  42704: access method "no_such_am" does not exist
+DROP OPERATOR CLASS IF EXISTS test_operator_class USING no_such_am;
+ERROR:  42704: access method "no_such_am" does not exist
+-- operator family
+DROP OPERATOR FAMILY test_operator_family USING btree;
+ERROR:  42704: operator family "test_operator_family" does not exist for access method "btree"
+DROP OPERATOR FAMILY IF EXISTS test_operator_family USING btree;
+NOTICE:  00000: operator family "test_operator_family" does not exist for access method "btree", skipping
+DROP OPERATOR FAMILY
+DROP OPERATOR FAMILY test_operator_family USING no_such_am;
+ERROR:  42704: access method "no_such_am" does not exist
+DROP OPERATOR FAMILY IF EXISTS test_operator_family USING no_such_am;
+ERROR:  42704: access method "no_such_am" does not exist
+-- drop the table
+DROP TABLE IF EXISTS test_exists;
+DROP TABLE
+DROP TABLE test_exists;
+ERROR:  42P01: table "test_exists" does not exist
+-- be tolerant with missing schemas, types, etc
+DROP AGGREGATE IF EXISTS no_such_schema.foo(int);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP AGGREGATE
+DROP AGGREGATE IF EXISTS foo(no_such_type);
+NOTICE:  00000: type "no_such_type" does not exist, skipping
+DROP AGGREGATE
+DROP AGGREGATE IF EXISTS foo(no_such_schema.no_such_type);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP AGGREGATE
+DROP CAST IF EXISTS (INTEGER AS no_such_type2);
+NOTICE:  00000: type "no_such_type2" does not exist, skipping
+DROP CAST
+DROP CAST IF EXISTS (no_such_type1 AS INTEGER);
+NOTICE:  00000: type "no_such_type1" does not exist, skipping
+DROP CAST
+DROP CAST IF EXISTS (INTEGER AS no_such_schema.bar);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP CAST
+DROP CAST IF EXISTS (no_such_schema.foo AS INTEGER);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP CAST
+DROP COLLATION IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP COLLATION
+DROP CONVERSION IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP CONVERSION
+DROP DOMAIN IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP DOMAIN
+DROP FOREIGN TABLE IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP FOREIGN TABLE
+DROP FUNCTION IF EXISTS no_such_schema.foo();
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP FUNCTION
+DROP FUNCTION IF EXISTS foo(no_such_type);
+NOTICE:  00000: type "no_such_type" does not exist, skipping
+DROP FUNCTION
+DROP FUNCTION IF EXISTS foo(no_such_schema.no_such_type);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP FUNCTION
+DROP INDEX IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP INDEX
+DROP MATERIALIZED VIEW IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP MATERIALIZED VIEW
+DROP OPERATOR IF EXISTS no_such_schema.+ (int, int);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP OPERATOR
+DROP OPERATOR IF EXISTS + (no_such_type, no_such_type);
+NOTICE:  00000: type "no_such_type" does not exist, skipping
+DROP OPERATOR
+DROP OPERATOR IF EXISTS + (no_such_schema.no_such_type, no_such_schema.no_such_type);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP OPERATOR
+DROP OPERATOR IF EXISTS # (NONE, no_such_schema.no_such_type);
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP OPERATOR
+DROP OPERATOR CLASS IF EXISTS no_such_schema.widget_ops USING btree;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP OPERATOR CLASS
+DROP OPERATOR FAMILY IF EXISTS no_such_schema.float_ops USING btree;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP OPERATOR FAMILY
+DROP RULE IF EXISTS foo ON no_such_schema.bar;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP RULE
+DROP SEQUENCE IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP SEQUENCE
+DROP TABLE IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TABLE
+DROP TEXT SEARCH CONFIGURATION IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TEXT SEARCH CONFIGURATION
+DROP TEXT SEARCH DICTIONARY IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TEXT SEARCH DICTIONARY
+DROP TEXT SEARCH PARSER IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TEXT SEARCH PARSER
+DROP TEXT SEARCH TEMPLATE IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TEXT SEARCH TEMPLATE
+DROP TRIGGER IF EXISTS foo ON no_such_schema.bar;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TRIGGER
+DROP TYPE IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP TYPE
+DROP VIEW IF EXISTS no_such_schema.foo;
+NOTICE:  00000: schema "no_such_schema" does not exist, skipping
+DROP VIEW

@@ -1,0 +1,193 @@
+40c40
+< ERROR:  42883: function check_primary_key() does not exist
+---
+> CREATE TRIGGER
+45c45
+< ERROR:  42883: function check_primary_key() does not exist
+---
+> CREATE TRIGGER
+55c55
+< ERROR:  42883: function check_primary_key() does not exist
+---
+> CREATE TRIGGER
+60c60
+< ERROR:  42704: trigger "check_fkeys2_pkey_exist" for table "fkeys2" does not exist
+---
+> COMMENT
+62c62
+< ERROR:  42704: trigger "check_fkeys2_pkey_exist" for table "fkeys2" does not exist
+---
+> COMMENT
+74c74
+< ERROR:  42883: function check_foreign_key() does not exist
+---
+> CREATE TRIGGER
+84c84
+< ERROR:  42883: function check_foreign_key() does not exist
+---
+> CREATE TRIGGER
+95c95,96
+< INSERT 0 1
+---
+> ERROR:  09000: tuple references non-existent key
+> DETAIL:  Trigger "check_fkeys2_pkey_exist" found tuple referencing non-existent key in "pkeys".
+106c107,108
+< INSERT 0 1
+---
+> ERROR:  09000: tuple references non-existent key
+> DETAIL:  Trigger "check_fkeys_pkey_exist" found tuple referencing non-existent key in "pkeys".
+109c111,112
+< INSERT 0 1
+---
+> ERROR:  09000: tuple references non-existent key
+> DETAIL:  Trigger "check_fkeys_pkey2_exist" found tuple referencing non-existent key in "fkeys2".
+111c114,116
+< DELETE 1
+---
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys are deleted
+> ERROR:  09000: "check_fkeys2_fkey_restrict": tuple is referenced in "fkeys"
+> CONTEXT:  SQL statement "delete from fkeys2 where fkey21 = $1 and fkey22 = $2 "
+112a118,119
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys are deleted
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys2 are deleted
+115c122,124
+< UPDATE 1
+---
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys are deleted
+> ERROR:  09000: "check_fkeys2_fkey_restrict": tuple is referenced in "fkeys"
+> CONTEXT:  SQL statement "delete from fkeys2 where fkey21 = $1 and fkey22 = $2 "
+117,118c126,128
+< ERROR:  23505: duplicate key value violates unique constraint "pkeys_i"
+< DETAIL:  Key (pkey1, pkey2)=(7, 70) already exists.
+---
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys are deleted
+> NOTICE:  00000: check_pkeys_fkey_cascade: 1 tuple(s) of fkeys2 are deleted
+> UPDATE 1
+173c183
+< ERROR:  42883: function ttdummy() does not exist
+---
+> CREATE TRIGGER
+179c189
+< ERROR:  42883: function autoinc() does not exist
+---
+> CREATE TRIGGER
+189,191c199,201
+<         1 |         1 |          |    999999
+<         2 |         2 |          |    999999
+<         3 |         3 |        0 |    999999
+---
+>         1 |         1 |       10 |    999999
+>         2 |         2 |       20 |    999999
+>         3 |         3 |       30 |    999999
+199,201c209,212
+<         1 |         1 |          |    999999
+<         3 |         3 |        0 |    999999
+< (2 rows)
+---
+>         1 |         1 |       10 |    999999
+>         3 |         3 |       30 |    999999
+>         2 |         2 |       20 |        40
+> (3 rows)
+208,209c219,220
+<         1 |         1 |          |    999999
+<         3 |         3 |        0 |    999999
+---
+>         1 |         1 |       10 |    999999
+>         3 |         3 |       30 |    999999
+218,220c229,233
+<         1 |         1 |          |    999999
+<         3 |        30 |        0 |    999999
+< (2 rows)
+---
+>         1 |         1 |       10 |    999999
+>         2 |         2 |       20 |        40
+>         3 |        30 |       50 |    999999
+>         3 |         3 |       30 |        50
+> (4 rows)
+229,231c242,247
+<         1 |         1 |          |    999999
+<         5 |        30 |        0 |    999999
+< (2 rows)
+---
+>         1 |         1 |       10 |    999999
+>         2 |         2 |       20 |        40
+>         3 |         3 |       30 |        50
+>         5 |        30 |       60 |    999999
+>         3 |        30 |       50 |        60
+> (5 rows)
+235,238c251,255
+< ERROR:  42883: function set_ttdummy(integer) does not exist
+< LINE 1: select set_ttdummy(0);
+<                ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+>  set_ttdummy 
+> -------------
+>            1
+> (1 row)
+> 
+242c259
+< UPDATE 0
+---
+> UPDATE 1
+246,247c263,267
+<         1 |         1 |          |    999999
+< (1 row)
+---
+>         1 |         1 |       10 |    999999
+>         2 |         2 |       20 |        40
+>         3 |         3 |       30 |        50
+>         3 |        30 |       50 |    999999
+> (4 rows)
+251c271
+< UPDATE 0
+---
+> UPDATE 2
+255,256c275,279
+<         1 |         1 |          |    999999
+< (1 row)
+---
+>         1 |         1 |       10 |    999999
+>         2 |         2 |       20 |        40
+>         5 |         3 |       30 |        50
+>         5 |        30 |       50 |    999999
+> (4 rows)
+260,263c283,287
+< ERROR:  42883: function set_ttdummy(integer) does not exist
+< LINE 1: select set_ttdummy(1);
+<                ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+>  set_ttdummy 
+> -------------
+>            0
+> (1 row)
+> 
+266c290
+< UPDATE 1
+---
+> ERROR:  0A000: ttdummy (tttest): you cannot change price_on and/or price_off columns (use set_ttdummy)
+270,273c294,298
+< ERROR:  42883: function set_ttdummy(integer) does not exist
+< LINE 1: select set_ttdummy(0);
+<                ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+>  set_ttdummy 
+> -------------
+>            1
+> (1 row)
+> 
+278a304,306
+>         2 |         2 |       20 |        40
+>         5 |         3 |       30 |        50
+>         5 |        30 |       50 |    999999
+280c308
+< (1 row)
+---
+> (4 rows)
+287c315,316
+< (0 rows)
+---
+>         5 |         3 |       30 |        50
+> (1 row)

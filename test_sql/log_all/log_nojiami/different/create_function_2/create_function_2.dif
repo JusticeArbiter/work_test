@@ -1,0 +1,28 @@
+65c65
+< ERROR:  42704: type widget does not exist
+---
+> CREATE FUNCTION
+70c70
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+75c75
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+80c80
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+85c85
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+90c90
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+95c95
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> LOAD

@@ -1,0 +1,969 @@
+115,123c115,117
+<  oid  | proname | oid  | proname 
+< ------+---------+------+---------
+<  4244 | ascii   | 1620 | ascii
+<  1620 | ascii   | 4244 | ascii
+<   884 | btrim   | 4403 | btrim
+<  4403 | btrim   |  884 | btrim
+<  4383 | rtrim   |  876 | rtrim
+<   876 | rtrim   | 4383 | rtrim
+< (6 rows)
+---
+>  oid | proname | oid | proname 
+> -----+---------+-----+---------
+> (0 rows)
+146,508c140,142
+<  oid  |      proname       | oid  |      proname      
+< ------+--------------------+------+-------------------
+<  4534 | dbms_alert_signal_ | 4539 | dbms_alert_signal
+<  4179 | decode             | 4183 | decode
+<  4179 | decode             | 4184 | decode
+<  4179 | decode             | 4185 | decode
+<  4179 | decode             | 4186 | decode
+<  4179 | decode             | 4187 | decode
+<  4179 | decode             | 4199 | decode
+<  4179 | decode             | 4198 | decode
+<  4179 | decode             | 4197 | decode
+<  4179 | decode             | 4196 | decode
+<  4179 | decode             | 4195 | decode
+<  4179 | decode             | 4194 | decode
+<  4179 | decode             | 4193 | decode
+<  4179 | decode             | 4192 | decode
+<  4179 | decode             | 4188 | decode
+<  4179 | decode             | 4189 | decode
+<  4179 | decode             | 4190 | decode
+<  4179 | decode             | 4191 | decode
+<  4179 | decode             | 4211 | decode
+<  4179 | decode             | 4200 | decode
+<  4178 | decode             | 4183 | decode
+<  4178 | decode             | 4184 | decode
+<  4178 | decode             | 4185 | decode
+<  4178 | decode             | 4186 | decode
+<  4178 | decode             | 4187 | decode
+<  4178 | decode             | 4199 | decode
+<  4178 | decode             | 4198 | decode
+<  4178 | decode             | 4197 | decode
+<  4178 | decode             | 4196 | decode
+<  4178 | decode             | 4195 | decode
+<  4178 | decode             | 4194 | decode
+<  4178 | decode             | 4193 | decode
+<  4178 | decode             | 4192 | decode
+<  4178 | decode             | 4188 | decode
+<  4178 | decode             | 4189 | decode
+<  4178 | decode             | 4190 | decode
+<  4178 | decode             | 4191 | decode
+<  4178 | decode             | 4211 | decode
+<  4178 | decode             | 4200 | decode
+<  4176 | decode             | 4183 | decode
+<  4176 | decode             | 4184 | decode
+<  4176 | decode             | 4185 | decode
+<  4176 | decode             | 4186 | decode
+<  4176 | decode             | 4187 | decode
+<  4176 | decode             | 4199 | decode
+<  4176 | decode             | 4198 | decode
+<  4176 | decode             | 4197 | decode
+<  4176 | decode             | 4196 | decode
+<  4176 | decode             | 4195 | decode
+<  4176 | decode             | 4194 | decode
+<  4176 | decode             | 4193 | decode
+<  4176 | decode             | 4192 | decode
+<  4176 | decode             | 4188 | decode
+<  4176 | decode             | 4189 | decode
+<  4176 | decode             | 4190 | decode
+<  4176 | decode             | 4191 | decode
+<  4176 | decode             | 4211 | decode
+<  4176 | decode             | 4200 | decode
+<  4175 | decode             | 4183 | decode
+<  4175 | decode             | 4184 | decode
+<  4175 | decode             | 4185 | decode
+<  4175 | decode             | 4186 | decode
+<  4175 | decode             | 4187 | decode
+<  4175 | decode             | 4199 | decode
+<  4175 | decode             | 4198 | decode
+<  4175 | decode             | 4197 | decode
+<  4175 | decode             | 4196 | decode
+<  4175 | decode             | 4195 | decode
+<  4175 | decode             | 4194 | decode
+<  4175 | decode             | 4193 | decode
+<  4175 | decode             | 4192 | decode
+<  4175 | decode             | 4188 | decode
+<  4175 | decode             | 4189 | decode
+<  4175 | decode             | 4190 | decode
+<  4175 | decode             | 4191 | decode
+<  4175 | decode             | 4211 | decode
+<  4175 | decode             | 4200 | decode
+<  4174 | decode             | 4183 | decode
+<  4174 | decode             | 4184 | decode
+<  4174 | decode             | 4185 | decode
+<  4174 | decode             | 4186 | decode
+<  4174 | decode             | 4187 | decode
+<  4174 | decode             | 4199 | decode
+<  4174 | decode             | 4198 | decode
+<  4174 | decode             | 4197 | decode
+<  4174 | decode             | 4196 | decode
+<  4174 | decode             | 4195 | decode
+<  4174 | decode             | 4194 | decode
+<  4174 | decode             | 4193 | decode
+<  4174 | decode             | 4192 | decode
+<  4174 | decode             | 4188 | decode
+<  4174 | decode             | 4189 | decode
+<  4174 | decode             | 4190 | decode
+<  4174 | decode             | 4191 | decode
+<  4174 | decode             | 4211 | decode
+<  4174 | decode             | 4200 | decode
+<  4173 | decode             | 4183 | decode
+<  4173 | decode             | 4184 | decode
+<  4173 | decode             | 4185 | decode
+<  4173 | decode             | 4186 | decode
+<  4173 | decode             | 4187 | decode
+<  4173 | decode             | 4199 | decode
+<  4173 | decode             | 4198 | decode
+<  4173 | decode             | 4197 | decode
+<  4173 | decode             | 4196 | decode
+<  4173 | decode             | 4195 | decode
+<  4173 | decode             | 4194 | decode
+<  4173 | decode             | 4193 | decode
+<  4173 | decode             | 4192 | decode
+<  4173 | decode             | 4188 | decode
+<  4173 | decode             | 4189 | decode
+<  4173 | decode             | 4190 | decode
+<  4173 | decode             | 4191 | decode
+<  4173 | decode             | 4211 | decode
+<  4173 | decode             | 4200 | decode
+<  4172 | decode             | 4183 | decode
+<  4172 | decode             | 4184 | decode
+<  4172 | decode             | 4185 | decode
+<  4172 | decode             | 4186 | decode
+<  4172 | decode             | 4187 | decode
+<  4172 | decode             | 4199 | decode
+<  4172 | decode             | 4198 | decode
+<  4172 | decode             | 4197 | decode
+<  4172 | decode             | 4196 | decode
+<  4172 | decode             | 4195 | decode
+<  4172 | decode             | 4194 | decode
+<  4172 | decode             | 4193 | decode
+<  4172 | decode             | 4192 | decode
+<  4172 | decode             | 4188 | decode
+<  4172 | decode             | 4189 | decode
+<  4172 | decode             | 4190 | decode
+<  4172 | decode             | 4191 | decode
+<  4172 | decode             | 4211 | decode
+<  4172 | decode             | 4200 | decode
+<  4171 | decode             | 4183 | decode
+<  4171 | decode             | 4184 | decode
+<  4171 | decode             | 4185 | decode
+<  4171 | decode             | 4186 | decode
+<  4171 | decode             | 4187 | decode
+<  4171 | decode             | 4199 | decode
+<  4171 | decode             | 4198 | decode
+<  4171 | decode             | 4197 | decode
+<  4171 | decode             | 4196 | decode
+<  4171 | decode             | 4195 | decode
+<  4171 | decode             | 4194 | decode
+<  4171 | decode             | 4193 | decode
+<  4171 | decode             | 4192 | decode
+<  4171 | decode             | 4188 | decode
+<  4171 | decode             | 4189 | decode
+<  4171 | decode             | 4190 | decode
+<  4171 | decode             | 4191 | decode
+<  4171 | decode             | 4211 | decode
+<  4171 | decode             | 4200 | decode
+<  4170 | decode             | 4183 | decode
+<  4170 | decode             | 4184 | decode
+<  4170 | decode             | 4185 | decode
+<  4170 | decode             | 4186 | decode
+<  4170 | decode             | 4187 | decode
+<  4170 | decode             | 4199 | decode
+<  4170 | decode             | 4198 | decode
+<  4170 | decode             | 4197 | decode
+<  4170 | decode             | 4196 | decode
+<  4170 | decode             | 4195 | decode
+<  4170 | decode             | 4194 | decode
+<  4170 | decode             | 4193 | decode
+<  4170 | decode             | 4192 | decode
+<  4170 | decode             | 4188 | decode
+<  4170 | decode             | 4189 | decode
+<  4170 | decode             | 4190 | decode
+<  4170 | decode             | 4191 | decode
+<  4170 | decode             | 4211 | decode
+<  4170 | decode             | 4200 | decode
+<  4169 | decode             | 4183 | decode
+<  4169 | decode             | 4184 | decode
+<  4169 | decode             | 4185 | decode
+<  4169 | decode             | 4186 | decode
+<  4169 | decode             | 4187 | decode
+<  4169 | decode             | 4199 | decode
+<  4169 | decode             | 4198 | decode
+<  4169 | decode             | 4197 | decode
+<  4169 | decode             | 4196 | decode
+<  4169 | decode             | 4195 | decode
+<  4169 | decode             | 4194 | decode
+<  4169 | decode             | 4193 | decode
+<  4169 | decode             | 4192 | decode
+<  4169 | decode             | 4188 | decode
+<  4169 | decode             | 4189 | decode
+<  4169 | decode             | 4190 | decode
+<  4169 | decode             | 4191 | decode
+<  4169 | decode             | 4211 | decode
+<  4169 | decode             | 4200 | decode
+<  4168 | decode             | 4183 | decode
+<  4168 | decode             | 4184 | decode
+<  4168 | decode             | 4185 | decode
+<  4168 | decode             | 4186 | decode
+<  4168 | decode             | 4187 | decode
+<  4168 | decode             | 4199 | decode
+<  4168 | decode             | 4198 | decode
+<  4168 | decode             | 4197 | decode
+<  4168 | decode             | 4196 | decode
+<  4168 | decode             | 4195 | decode
+<  4168 | decode             | 4194 | decode
+<  4168 | decode             | 4193 | decode
+<  4168 | decode             | 4192 | decode
+<  4168 | decode             | 4188 | decode
+<  4168 | decode             | 4189 | decode
+<  4168 | decode             | 4190 | decode
+<  4168 | decode             | 4191 | decode
+<  4168 | decode             | 4211 | decode
+<  4168 | decode             | 4200 | decode
+<  4166 | decode             | 4183 | decode
+<  4166 | decode             | 4184 | decode
+<  4166 | decode             | 4185 | decode
+<  4166 | decode             | 4186 | decode
+<  4166 | decode             | 4187 | decode
+<  4166 | decode             | 4199 | decode
+<  4166 | decode             | 4198 | decode
+<  4166 | decode             | 4197 | decode
+<  4166 | decode             | 4196 | decode
+<  4166 | decode             | 4195 | decode
+<  4166 | decode             | 4194 | decode
+<  4166 | decode             | 4193 | decode
+<  4166 | decode             | 4192 | decode
+<  4166 | decode             | 4188 | decode
+<  4166 | decode             | 4189 | decode
+<  4166 | decode             | 4190 | decode
+<  4166 | decode             | 4191 | decode
+<  4166 | decode             | 4211 | decode
+<  4166 | decode             | 4200 | decode
+<  4165 | decode             | 4183 | decode
+<  4165 | decode             | 4184 | decode
+<  4165 | decode             | 4185 | decode
+<  4165 | decode             | 4186 | decode
+<  4165 | decode             | 4187 | decode
+<  4165 | decode             | 4199 | decode
+<  4165 | decode             | 4198 | decode
+<  4165 | decode             | 4197 | decode
+<  4165 | decode             | 4196 | decode
+<  4165 | decode             | 4195 | decode
+<  4165 | decode             | 4194 | decode
+<  4165 | decode             | 4193 | decode
+<  4165 | decode             | 4192 | decode
+<  4165 | decode             | 4188 | decode
+<  4165 | decode             | 4189 | decode
+<  4165 | decode             | 4190 | decode
+<  4165 | decode             | 4191 | decode
+<  4165 | decode             | 4211 | decode
+<  4165 | decode             | 4200 | decode
+<  4164 | decode             | 4183 | decode
+<  4164 | decode             | 4184 | decode
+<  4164 | decode             | 4185 | decode
+<  4164 | decode             | 4186 | decode
+<  4164 | decode             | 4187 | decode
+<  4164 | decode             | 4199 | decode
+<  4164 | decode             | 4198 | decode
+<  4164 | decode             | 4197 | decode
+<  4164 | decode             | 4196 | decode
+<  4164 | decode             | 4195 | decode
+<  4164 | decode             | 4194 | decode
+<  4164 | decode             | 4193 | decode
+<  4164 | decode             | 4192 | decode
+<  4164 | decode             | 4188 | decode
+<  4164 | decode             | 4189 | decode
+<  4164 | decode             | 4190 | decode
+<  4164 | decode             | 4191 | decode
+<  4164 | decode             | 4211 | decode
+<  4164 | decode             | 4200 | decode
+<  4182 | decode             | 4183 | decode
+<  4182 | decode             | 4184 | decode
+<  4182 | decode             | 4185 | decode
+<  4182 | decode             | 4186 | decode
+<  4182 | decode             | 4187 | decode
+<  4182 | decode             | 4199 | decode
+<  4182 | decode             | 4198 | decode
+<  4182 | decode             | 4197 | decode
+<  4182 | decode             | 4196 | decode
+<  4182 | decode             | 4195 | decode
+<  4182 | decode             | 4194 | decode
+<  4182 | decode             | 4193 | decode
+<  4182 | decode             | 4192 | decode
+<  4182 | decode             | 4188 | decode
+<  4182 | decode             | 4189 | decode
+<  4182 | decode             | 4190 | decode
+<  4182 | decode             | 4191 | decode
+<  4182 | decode             | 4211 | decode
+<  4182 | decode             | 4200 | decode
+<  4181 | decode             | 4183 | decode
+<  4181 | decode             | 4184 | decode
+<  4181 | decode             | 4185 | decode
+<  4181 | decode             | 4186 | decode
+<  4181 | decode             | 4187 | decode
+<  4181 | decode             | 4199 | decode
+<  4181 | decode             | 4198 | decode
+<  4181 | decode             | 4197 | decode
+<  4181 | decode             | 4196 | decode
+<  4181 | decode             | 4195 | decode
+<  4181 | decode             | 4194 | decode
+<  4181 | decode             | 4193 | decode
+<  4181 | decode             | 4192 | decode
+<  4181 | decode             | 4188 | decode
+<  4181 | decode             | 4189 | decode
+<  4181 | decode             | 4190 | decode
+<  4181 | decode             | 4191 | decode
+<  4181 | decode             | 4211 | decode
+<  4181 | decode             | 4200 | decode
+<  4180 | decode             | 4183 | decode
+<  4180 | decode             | 4184 | decode
+<  4180 | decode             | 4185 | decode
+<  4180 | decode             | 4186 | decode
+<  4180 | decode             | 4187 | decode
+<  4180 | decode             | 4199 | decode
+<  4180 | decode             | 4198 | decode
+<  4180 | decode             | 4197 | decode
+<  4180 | decode             | 4196 | decode
+<  4180 | decode             | 4195 | decode
+<  4180 | decode             | 4194 | decode
+<  4180 | decode             | 4193 | decode
+<  4180 | decode             | 4192 | decode
+<  4180 | decode             | 4188 | decode
+<  4180 | decode             | 4189 | decode
+<  4180 | decode             | 4190 | decode
+<  4180 | decode             | 4191 | decode
+<  4180 | decode             | 4211 | decode
+<  4180 | decode             | 4200 | decode
+<  4242 | instrb             | 4243 | instrb
+<  4241 | instrb             | 4242 | instrb
+<  4241 | instrb             | 4243 | instrb
+<  4232 | regexp_count       | 4233 | regexp_count
+<  4231 | regexp_count       | 4232 | regexp_count
+<  4231 | regexp_count       | 4233 | regexp_count
+<  4221 | regexp_instr       | 4223 | regexp_instr
+<  4221 | regexp_instr       | 4222 | regexp_instr
+<  4219 | regexp_instr       | 4221 | regexp_instr
+<  4219 | regexp_instr       | 4220 | regexp_instr
+<  4219 | regexp_instr       | 4223 | regexp_instr
+<  4219 | regexp_instr       | 4222 | regexp_instr
+<  4218 | regexp_instr       | 4221 | regexp_instr
+<  4218 | regexp_instr       | 4219 | regexp_instr
+<  4218 | regexp_instr       | 4220 | regexp_instr
+<  4218 | regexp_instr       | 4223 | regexp_instr
+<  4218 | regexp_instr       | 4222 | regexp_instr
+<  4220 | regexp_instr       | 4221 | regexp_instr
+<  4220 | regexp_instr       | 4223 | regexp_instr
+<  4220 | regexp_instr       | 4222 | regexp_instr
+<  4222 | regexp_instr       | 4223 | regexp_instr
+<  4235 | regexp_substr      | 4237 | regexp_substr
+<  4235 | regexp_substr      | 4238 | regexp_substr
+<  4235 | regexp_substr      | 4236 | regexp_substr
+<  4234 | regexp_substr      | 4235 | regexp_substr
+<  4234 | regexp_substr      | 4237 | regexp_substr
+<  4234 | regexp_substr      | 4238 | regexp_substr
+<  4234 | regexp_substr      | 4236 | regexp_substr
+<  4237 | regexp_substr      | 4238 | regexp_substr
+<  4236 | regexp_substr      | 4237 | regexp_substr
+<  4236 | regexp_substr      | 4238 | regexp_substr
+<  4542 | plvsubst_string    | 4543 | plvsubst_string
+<  4542 | plvsubst_string    | 4544 | plvsubst_string
+<  4543 | plvsubst_string    | 4544 | plvsubst_string
+<  2433 | varcharsend        | 4311 | nvarchar2send
+<  2433 | varcharsend        | 4303 | varchar2send
+< (360 rows)
+---
+>  oid | proname | oid | proname 
+> -----+---------+-----+---------
+> (0 rows)
+532,629d165
+<          16 |         18
+<          16 |         19
+<          16 |         20
+<          16 |         21
+<          16 |         23
+<          16 |         25
+<          16 |        700
+<          16 |        701
+<          16 |        705
+<          16 |       1042
+<          16 |       1043
+<          16 |       1082
+<          16 |       1083
+<          16 |       1114
+<          16 |       1184
+<          16 |       1266
+<          16 |       1700
+<          16 |       2275
+<          17 |       3315
+<          18 |         19
+<          18 |         20
+<          18 |         21
+<          18 |         23
+<          18 |         25
+<          18 |        700
+<          18 |        701
+<          18 |        705
+<          18 |       1042
+<          18 |       1043
+<          18 |       1082
+<          18 |       1083
+<          18 |       1114
+<          18 |       1184
+<          18 |       1266
+<          18 |       1700
+<          18 |       2275
+<          19 |         20
+<          19 |         21
+<          19 |         23
+<          19 |         25
+<          19 |        700
+<          19 |        701
+<          19 |        705
+<          19 |       1042
+<          19 |       1043
+<          19 |       1082
+<          19 |       1083
+<          19 |       1114
+<          19 |       1184
+<          19 |       1266
+<          19 |       1700
+<          19 |       2275
+<          20 |         21
+<          20 |         23
+<          20 |         25
+<          20 |        700
+<          20 |        701
+<          20 |        705
+<          20 |       1042
+<          20 |       1043
+<          20 |       1082
+<          20 |       1083
+<          20 |       1114
+<          20 |       1184
+<          20 |       1266
+<          20 |       1700
+<          20 |       2275
+<          21 |         23
+<          21 |         25
+<          21 |        700
+<          21 |        701
+<          21 |        705
+<          21 |       1042
+<          21 |       1043
+<          21 |       1082
+<          21 |       1083
+<          21 |       1114
+<          21 |       1184
+<          21 |       1266
+<          21 |       1700
+<          21 |       2275
+<          23 |         25
+<          23 |        700
+<          23 |        701
+<          23 |        705
+<          23 |       1042
+<          23 |       1043
+<          23 |       1082
+<          23 |       1083
+<          23 |       1114
+<          23 |       1184
+<          23 |       1266
+<          23 |       1700
+<          23 |       2275
+<          25 |        700
+<          25 |        701
+<          25 |        705
+<          25 |       1042
+631,693d166
+<          25 |       1082
+<          25 |       1083
+<          25 |       1114
+<          25 |       1184
+<          25 |       1266
+<          25 |       1700
+<          25 |       2275
+<         700 |        701
+<         700 |        705
+<         700 |       1042
+<         700 |       1043
+<         700 |       1082
+<         700 |       1083
+<         700 |       1114
+<         700 |       1184
+<         700 |       1266
+<         700 |       1700
+<         700 |       2275
+<         701 |        705
+<         701 |       1042
+<         701 |       1043
+<         701 |       1082
+<         701 |       1083
+<         701 |       1114
+<         701 |       1184
+<         701 |       1266
+<         701 |       1700
+<         701 |       2275
+<         705 |       1042
+<         705 |       1043
+<         705 |       1082
+<         705 |       1083
+<         705 |       1114
+<         705 |       1184
+<         705 |       1266
+<         705 |       1700
+<         705 |       2275
+<        1042 |       1043
+<        1042 |       1082
+<        1042 |       1083
+<        1042 |       1114
+<        1042 |       1184
+<        1042 |       1266
+<        1042 |       1700
+<        1042 |       2275
+<        1043 |       1082
+<        1043 |       1083
+<        1043 |       1114
+<        1043 |       1184
+<        1043 |       1266
+<        1043 |       1700
+<        1043 |       2275
+<        1082 |       1083
+<        1082 |       1114
+<        1082 |       1184
+<        1082 |       1266
+<        1082 |       1700
+<        1082 |       2275
+<        1083 |       1114
+<        1083 |       1184
+<        1083 |       1266
+<        1083 |       1700
+<        1083 |       2275
+695,705c168
+<        1114 |       1266
+<        1114 |       1700
+<        1114 |       2275
+<        1184 |       1266
+<        1184 |       1700
+<        1184 |       2275
+<        1266 |       1700
+<        1266 |       2275
+<        1700 |       2275
+<        3315 |       3316
+< (173 rows)
+---
+> (2 rows)
+719,722d181
+<           17 |        3315
+<           18 |          25
+<           18 |        3315
+<           18 |        3316
+725,728d183
+<           25 |        3315
+<           25 |        3316
+<         1043 |        3315
+<         1043 |        3316
+731,732c186
+<         3315 |        3316
+< (13 rows)
+---
+> (4 rows)
+746,749d199
+<           17 |        3315
+<           18 |          25
+<           18 |        3315
+<           18 |        3316
+751,752d200
+<           25 |        3315
+<           25 |        3316
+755,756c203
+<         3315 |        3316
+< (10 rows)
+---
+> (3 rows)
+768,932d214
+<           16 |          18
+<           16 |          19
+<           16 |          20
+<           16 |          21
+<           16 |          23
+<           16 |          25
+<           16 |         700
+<           16 |         701
+<           16 |         705
+<           16 |        1042
+<           16 |        1043
+<           16 |        1082
+<           16 |        1083
+<           16 |        1114
+<           16 |        1184
+<           16 |        1266
+<           16 |        1700
+<           16 |        2275
+<           18 |          19
+<           18 |          20
+<           18 |          21
+<           18 |          23
+<           18 |          25
+<           18 |         700
+<           18 |         701
+<           18 |         705
+<           18 |        1042
+<           18 |        1043
+<           18 |        1082
+<           18 |        1083
+<           18 |        1114
+<           18 |        1184
+<           18 |        1266
+<           18 |        1700
+<           18 |        2275
+<           18 |        3315
+<           18 |        3316
+<           19 |          20
+<           19 |          21
+<           19 |          23
+<           19 |          25
+<           19 |         700
+<           19 |         701
+<           19 |         705
+<           19 |        1042
+<           19 |        1043
+<           19 |        1082
+<           19 |        1083
+<           19 |        1114
+<           19 |        1184
+<           19 |        1266
+<           19 |        1700
+<           19 |        2275
+<           20 |          21
+<           20 |          23
+<           20 |          25
+<           20 |         700
+<           20 |         701
+<           20 |         705
+<           20 |        1042
+<           20 |        1043
+<           20 |        1082
+<           20 |        1083
+<           20 |        1114
+<           20 |        1184
+<           20 |        1266
+<           20 |        1700
+<           20 |        2275
+<           21 |          23
+<           21 |          25
+<           21 |         700
+<           21 |         701
+<           21 |         705
+<           21 |        1042
+<           21 |        1043
+<           21 |        1082
+<           21 |        1083
+<           21 |        1114
+<           21 |        1184
+<           21 |        1266
+<           21 |        1700
+<           21 |        2275
+<           23 |          25
+<           23 |         700
+<           23 |         701
+<           23 |         705
+<           23 |        1042
+<           23 |        1043
+<           23 |        1082
+<           23 |        1083
+<           23 |        1114
+<           23 |        1184
+<           23 |        1266
+<           23 |        1700
+<           23 |        2275
+<           25 |         700
+<           25 |         701
+<           25 |         705
+<           25 |        1042
+<           25 |        1043
+<           25 |        1082
+<           25 |        1083
+<           25 |        1114
+<           25 |        1184
+<           25 |        1266
+<           25 |        1700
+<           25 |        2275
+<           25 |        3315
+<           25 |        3316
+<          700 |         701
+<          700 |         705
+<          700 |        1042
+<          700 |        1043
+<          700 |        1082
+<          700 |        1083
+<          700 |        1114
+<          700 |        1184
+<          700 |        1266
+<          700 |        1700
+<          700 |        2275
+<          701 |         705
+<          701 |        1042
+<          701 |        1043
+<          701 |        1082
+<          701 |        1083
+<          701 |        1114
+<          701 |        1184
+<          701 |        1266
+<          701 |        1700
+<          701 |        2275
+<          705 |        1042
+<          705 |        1043
+<          705 |        1082
+<          705 |        1083
+<          705 |        1114
+<          705 |        1184
+<          705 |        1266
+<          705 |        1700
+<          705 |        2275
+<         1042 |        1043
+<         1042 |        1082
+<         1042 |        1083
+<         1042 |        1114
+<         1042 |        1184
+<         1042 |        1266
+<         1042 |        1700
+<         1042 |        2275
+<         1043 |        1082
+<         1043 |        1083
+<         1043 |        1114
+<         1043 |        1184
+<         1043 |        1266
+<         1043 |        1700
+<         1043 |        2275
+<         1082 |        1083
+<         1082 |        1114
+<         1082 |        1184
+<         1082 |        1266
+<         1082 |        1700
+<         1082 |        2275
+<         1083 |        1114
+<         1083 |        1184
+<         1083 |        1266
+<         1083 |        1700
+<         1083 |        2275
+934,944c216
+<         1114 |        1266
+<         1114 |        1700
+<         1114 |        2275
+<         1184 |        1266
+<         1184 |        1700
+<         1184 |        2275
+<         1266 |        1700
+<         1266 |        2275
+<         1700 |        2275
+<         3315 |        3316
+< (176 rows)
+---
+> (1 row)
+1109,1113c381,383
+<  oid  |  proname   | proargtypes | proallargtypes  | proargmodes 
+< ------+------------+-------------+-----------------+-------------
+<  4212 | bin_to_num | 21          | {2276}          | {v}
+<  4110 | tz_offset  | 25          | {25,25,1186,16} | {o,o,o,o}
+< (2 rows)
+---
+>  oid | proname | proargtypes | proallargtypes | proargmodes 
+> -----+---------+-------------+----------------+-------------
+> (0 rows)
+1130,1270c400,402
+<  oid  |          proname          
+< ------+---------------------------
+<  4112 | months_between
+<  9987 | days_between
+<  9986 | days_between_tmtz
+<  4276 | nlssort
+<  4277 | nlssort
+<  4278 | set_nls_sort
+<  4279 | add_days_to_timestamp
+<  4280 | add_days_to_timestamp
+<  4281 | add_days_to_timestamp
+<  4282 | add_days_to_timestamp
+<  4283 | subtract
+<  4284 | subtract
+<  4285 | subtract
+<  4286 | subtract
+<  4287 | subtract
+<  4288 | listagg1_transfn
+<  4289 | listagg2_transfn
+<  4290 | listagg_finalfn
+<  4291 | listagg
+<  4292 | listagg
+<  4293 | median4_transfn
+<  4294 | median4_finalfn
+<  4295 | median8_transfn
+<  4296 | median8_finalfn
+<  4297 | median
+<  4298 | median
+<  4299 | varchar2in
+<  4300 | varchar2out
+<  4301 | varchar2_transform
+<  4302 | varchar2recv
+<  4303 | varchar2send
+<  4304 | varchar2typmodin
+<  4305 | varchar2typmodout
+<  4306 | varchar2
+<  4307 | nvarchar2in
+<  4308 | nvarchar2out
+<  4309 | nvarchar2_transform
+<  4310 | nvarchar2recv
+<  4311 | nvarchar2send
+<  4312 | nvarchar2typmodin
+<  4313 | nvarchar2typmodout
+<  4314 | nvarchar2
+<  4319 | lpad
+<  4320 | lpad
+<  4321 | lpad
+<  4322 | lpad
+<  4323 | lpad
+<  4324 | lpad
+<  4325 | lpad
+<  4326 | lpad
+<  4327 | lpad
+<  4328 | lpad
+<  4329 | lpad
+<  4330 | lpad
+<  4331 | lpad
+<  4332 | lpad
+<  4333 | lpad
+<  4334 | lpad
+<  4335 | lpad
+<  4336 | lpad
+<  4337 | rpad
+<  4338 | rpad
+<  4339 | rpad
+<  4340 | rpad
+<  4341 | rpad
+<  4342 | rpad
+<  4343 | rpad
+<  4344 | rpad
+<  4346 | rpad
+<  4347 | rpad
+<  4349 | rpad
+<  4350 | rpad
+<  4351 | rpad
+<  4352 | rpad
+<  4353 | rpad
+<  4354 | rpad
+<  4355 | rpad
+<  4356 | rpad
+<  4377 | rtrim
+<  4378 | rtrim
+<  4379 | rtrim
+<  4380 | rtrim
+<  4381 | rtrim
+<  4382 | rtrim
+<  4383 | rtrim
+<  4384 | rtrim
+<  4385 | rtrim
+<  4387 | rtrim
+<  4388 | rtrim
+<  4389 | rtrim
+<  4390 | rtrim
+<  4391 | rtrim
+<  4392 | rtrim
+<  4393 | rtrim
+<  4394 | rtrim
+<  4395 | rtrim
+<  4396 | rtrim
+<  4397 | btrim
+<  4398 | btrim
+<  4399 | btrim
+<  4400 | btrim
+<  4401 | btrim
+<  4402 | btrim
+<  4403 | btrim
+<  4404 | btrim
+<  4405 | btrim
+<  4407 | btrim
+<  4408 | btrim
+<  4409 | btrim
+<  4410 | btrim
+<  4411 | btrim
+<  4412 | btrim
+<  4413 | btrim
+<  4414 | btrim
+<  4415 | btrim
+<  4416 | btrim
+<  4417 | length
+<  4450 | plvchr_is_kind
+<  4451 | plvchr_is_kind
+<  4452 | plvchr_is_blank
+<  4453 | plvchr_is_blank
+<  4454 | plvchr_is_digit
+<  4455 | plvchr_is_digit
+<  4456 | plvchr_is_quote
+<  4457 | plvchr_is_quote
+<  4458 | plvchr_is_other
+<  4459 | plvchr_is_other
+<  4460 | plvchr_is_letter
+<  4461 | plvchr_is_letter
+<  4462 | plvchr_char_name
+<  4495 | dbms_pipe_list_pipes
+<  4525 | plvdate_noinclude_start
+<  4526 | plvdate_including_start
+<  4527 | plvdate_version
+<  4534 | dbms_alert_signal_
+<  4537 | dbms_alert_set_defaults
+<  4538 | dbms_alert_defered_signal
+<  4539 | dbms_alert_signal
+< (138 rows)
+---
+>  oid | proname 
+> -----+---------
+> (0 rows)
+1784d915
+<  <    | >
+1787d917
+<  <=   | >=
+1792c922
+< (18 rows)
+---
+> (16 rows)
+1800,1803c930,932
+<  oid  | oprname 
+< ------+---------
+<  4801 | =
+< (1 row)
+---
+>  oid | oprname 
+> -----+---------
+> (0 rows)
+1823,1826c952,954
+<  oid  | oprname 
+< ------+---------
+<  4801 | =
+< (1 row)
+---
+>  oid | oprname 
+> -----+---------
+> (0 rows)
+1846,1849c974,976
+<  oid  | oprname 
+< ------+---------
+<  4801 | =
+< (1 row)
+---
+>  oid | oprname 
+> -----+---------
+> (0 rows)
+2300,2304c1427,1430
+<       oid      |        oid         
+< ---------------+--------------------
+<  count("any")  | count()
+<  listagg(text) | listagg(text,text)
+< (2 rows)
+---
+>      oid      |   oid   
+> --------------+---------
+>  count("any") | count()
+> (1 row)

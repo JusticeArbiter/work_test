@@ -1,0 +1,88 @@
+--
+-- LIMIT
+-- Check the LIMIT/OFFSET feature of SELECT
+--
+SELECT ''::text AS two, unique1, unique2, stringu1
+		FROM onek WHERE unique1 > 50
+		ORDER BY unique1 LIMIT 2;
+ two | unique1 | unique2 | stringu1 
+-----+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS five, unique1, unique2, stringu1
+		FROM onek WHERE unique1 > 60
+		ORDER BY unique1 LIMIT 5;
+ five | unique1 | unique2 | stringu1 
+------+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS two, unique1, unique2, stringu1
+		FROM onek WHERE unique1 > 60 AND unique1 < 63
+		ORDER BY unique1 LIMIT 5;
+ two | unique1 | unique2 | stringu1 
+-----+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS three, unique1, unique2, stringu1
+		FROM onek WHERE unique1 > 100
+		ORDER BY unique1 LIMIT 3 OFFSET 20;
+ three | unique1 | unique2 | stringu1 
+-------+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS zero, unique1, unique2, stringu1
+		FROM onek WHERE unique1 < 50
+		ORDER BY unique1 DESC LIMIT 8 OFFSET 99;
+ zero | unique1 | unique2 | stringu1 
+------+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS eleven, unique1, unique2, stringu1
+		FROM onek WHERE unique1 < 50
+		ORDER BY unique1 DESC LIMIT 20 OFFSET 39;
+ eleven | unique1 | unique2 | stringu1 
+--------+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS ten, unique1, unique2, stringu1
+		FROM onek
+		ORDER BY unique1 OFFSET 990;
+ ten | unique1 | unique2 | stringu1 
+-----+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS five, unique1, unique2, stringu1
+		FROM onek
+		ORDER BY unique1 OFFSET 990 LIMIT 5;
+ five | unique1 | unique2 | stringu1 
+------+---------+---------+----------
+(0 rows)
+
+SELECT ''::text AS five, unique1, unique2, stringu1
+		FROM onek
+		ORDER BY unique1 LIMIT 5 OFFSET 900;
+ five | unique1 | unique2 | stringu1 
+------+---------+---------+----------
+(0 rows)
+
+-- Stress test for variable LIMIT in conjunction with bounded-heap sorting
+SELECT
+  (SELECT n
+     FROM (VALUES (1)) AS x,
+          (SELECT n FROM generate_series(1,10) AS n
+             ORDER BY n LIMIT 1 OFFSET s-1) AS y) AS z
+  FROM generate_series(1,10) AS s;
+ z  
+----
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+(10 rows)
+

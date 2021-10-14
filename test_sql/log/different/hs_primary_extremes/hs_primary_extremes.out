@@ -1,0 +1,130 @@
+--
+-- Hot Standby tests
+--
+-- hs_primary_extremes.sql
+--
+drop table if exists hs_extreme;
+NOTICE:  00000: table "hs_extreme" does not exist, skipping
+DROP TABLE
+create table hs_extreme (col1 integer);
+CREATE TABLE
+CREATE OR REPLACE FUNCTION hs_subxids (n integer)
+RETURNS void
+LANGUAGE plpgsql
+AS $$
+    BEGIN
+      IF n <= 0 THEN RETURN; END IF;
+      INSERT INTO hs_extreme VALUES (n);
+      PERFORM hs_subxids(n - 1);
+      RETURN;
+    EXCEPTION WHEN raise_exception THEN NULL; END;
+$$;
+CREATE FUNCTION
+BEGIN;
+BEGIN
+SELECT hs_subxids(257);
+ hs_subxids 
+------------
+ 
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+SELECT hs_subxids(257);
+ hs_subxids 
+------------
+ 
+(1 row)
+
+COMMIT;
+COMMIT
+set client_min_messages = 'warning';
+SET
+CREATE OR REPLACE FUNCTION hs_locks_create (n integer)
+RETURNS void
+LANGUAGE plpgsql
+AS $$
+    BEGIN
+      IF n <= 0 THEN
+		CHECKPOINT;
+		RETURN;
+	  END IF;
+      EXECUTE 'CREATE TABLE hs_locks_' || n::text || ' ()';
+      PERFORM hs_locks_create(n - 1);
+      RETURN;
+    EXCEPTION WHEN raise_exception THEN NULL; END;
+$$;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION hs_locks_drop (n integer)
+RETURNS void
+LANGUAGE plpgsql
+AS $$
+    BEGIN
+      IF n <= 0 THEN
+		CHECKPOINT;
+		RETURN;
+	  END IF;
+	  EXECUTE 'DROP TABLE IF EXISTS hs_locks_' || n::text;
+      PERFORM hs_locks_drop(n - 1);
+      RETURN;
+    EXCEPTION WHEN raise_exception THEN NULL; END;
+$$;
+CREATE FUNCTION
+BEGIN;
+BEGIN
+SELECT hs_locks_drop(257);
+ hs_locks_drop 
+---------------
+ 
+(1 row)
+
+SELECT hs_locks_create(257);
+ hs_locks_create 
+-----------------
+ 
+(1 row)
+
+SELECT count(*) > 257 FROM pg_locks;
+ ?column? 
+----------
+ t
+(1 row)
+
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+SELECT hs_locks_drop(257);
+ hs_locks_drop 
+---------------
+ 
+(1 row)
+
+SELECT hs_locks_create(257);
+ hs_locks_create 
+-----------------
+ 
+(1 row)
+
+SELECT count(*) > 257 FROM pg_locks;
+ ?column? 
+----------
+ t
+(1 row)
+
+COMMIT;
+COMMIT
+SELECT hs_locks_drop(257);
+ hs_locks_drop 
+---------------
+ 
+(1 row)
+
+SELECT pg_switch_xlog();
+ pg_switch_xlog 
+----------------
+ 0/6E66F18
+(1 row)
+

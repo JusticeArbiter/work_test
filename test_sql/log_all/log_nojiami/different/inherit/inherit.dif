@@ -1,0 +1,40 @@
+762a763
+> Number of child tables: 1 (Use \d+ to list them.)
+1104d1104
+< Replica Identity: FULL
+1130d1129
+< Replica Identity: FULL
+1150d1148
+< Replica Identity: FULL
+1199c1197
+< Replica Identity: FULL
+---
+> Child tables: test_constraints_inh
+1210c1208
+< Replica Identity: FULL
+---
+> Child tables: test_constraints_inh
+1220d1217
+< Replica Identity: FULL
+1240c1237
+< Replica Identity: FULL
+---
+> Child tables: test_ex_constraints_inh
+1249c1246
+< Replica Identity: FULL
+---
+> Child tables: test_ex_constraints_inh
+1257d1253
+< Replica Identity: FULL
+1279d1274
+< Replica Identity: FULL
+1288c1283
+< Replica Identity: FULL
+---
+> Child tables: test_foreign_constraints_inh
+1297c1292
+< Replica Identity: FULL
+---
+> Child tables: test_foreign_constraints_inh
+1305d1299
+< Replica Identity: FULL

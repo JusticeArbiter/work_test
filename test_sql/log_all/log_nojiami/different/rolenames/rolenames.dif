@@ -1,0 +1,4 @@
+954c954
+< NOTICE:  00000: role "nonexistent" does not exist, skipping
+---
+> NOTICE:  role "nonexistent" does not exist, skipping

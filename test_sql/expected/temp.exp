@@ -1,0 +1,253 @@
+--
+-- TEMP
+-- Test temp relations and indexes
+--
+-- test temp table/index masking
+CREATE TABLE temptest(col int);
+CREATE TABLE
+CREATE INDEX i_temptest ON temptest(col);
+CREATE INDEX
+CREATE TEMP TABLE temptest(tcol int);
+CREATE TABLE
+CREATE INDEX i_temptest ON temptest(tcol);
+CREATE INDEX
+SELECT * FROM temptest;
+ tcol 
+------
+(0 rows)
+
+DROP INDEX i_temptest;
+DROP INDEX
+DROP TABLE temptest;
+DROP TABLE
+SELECT * FROM temptest;
+ col 
+-----
+(0 rows)
+
+DROP INDEX i_temptest;
+DROP INDEX
+DROP TABLE temptest;
+DROP TABLE
+-- test temp table selects
+CREATE TABLE temptest(col int);
+CREATE TABLE
+INSERT INTO temptest VALUES (1);
+INSERT 0 1
+CREATE TEMP TABLE temptest(tcol float);
+CREATE TABLE
+INSERT INTO temptest VALUES (2.1);
+INSERT 0 1
+SELECT * FROM temptest;
+ tcol 
+------
+  2.1
+(1 row)
+
+DROP TABLE temptest;
+DROP TABLE
+SELECT * FROM temptest;
+ col 
+-----
+   1
+(1 row)
+
+DROP TABLE temptest;
+DROP TABLE
+-- test temp table deletion
+CREATE TEMP TABLE temptest(col int);
+CREATE TABLE
+\c
+You are now connected to database "highgo" as user "highgo".
+SELECT * FROM temptest;
+ERROR:  42P01: relation "temptest" does not exist
+LINE 1: SELECT * FROM temptest;
+                      ^
+-- Test ON COMMIT DELETE ROWS
+CREATE TEMP TABLE temptest(col int) ON COMMIT DELETE ROWS;
+CREATE TABLE
+BEGIN;
+BEGIN
+INSERT INTO temptest VALUES (1);
+INSERT 0 1
+INSERT INTO temptest VALUES (2);
+INSERT 0 1
+SELECT * FROM temptest;
+ col 
+-----
+   1
+   2
+(2 rows)
+
+COMMIT;
+COMMIT
+SELECT * FROM temptest;
+ col 
+-----
+(0 rows)
+
+DROP TABLE temptest;
+DROP TABLE
+BEGIN;
+BEGIN
+CREATE TEMP TABLE temptest(col) ON COMMIT DELETE ROWS AS SELECT 1;
+SELECT 1
+SELECT * FROM temptest;
+ col 
+-----
+   1
+(1 row)
+
+COMMIT;
+COMMIT
+SELECT * FROM temptest;
+ col 
+-----
+(0 rows)
+
+DROP TABLE temptest;
+DROP TABLE
+-- Test ON COMMIT DROP
+BEGIN;
+BEGIN
+CREATE TEMP TABLE temptest(col int) ON COMMIT DROP;
+CREATE TABLE
+INSERT INTO temptest VALUES (1);
+INSERT 0 1
+INSERT INTO temptest VALUES (2);
+INSERT 0 1
+SELECT * FROM temptest;
+ col 
+-----
+   1
+   2
+(2 rows)
+
+COMMIT;
+COMMIT
+SELECT * FROM temptest;
+ERROR:  42P01: relation "temptest" does not exist
+LINE 1: SELECT * FROM temptest;
+                      ^
+BEGIN;
+BEGIN
+CREATE TEMP TABLE temptest(col) ON COMMIT DROP AS SELECT 1;
+SELECT 1
+SELECT * FROM temptest;
+ col 
+-----
+   1
+(1 row)
+
+COMMIT;
+COMMIT
+SELECT * FROM temptest;
+ERROR:  42P01: relation "temptest" does not exist
+LINE 1: SELECT * FROM temptest;
+                      ^
+-- ON COMMIT is only allowed for TEMP
+CREATE TABLE temptest(col int) ON COMMIT DELETE ROWS;
+ERROR:  42P16: ON COMMIT can only be used on temporary tables
+CREATE TABLE temptest(col) ON COMMIT DELETE ROWS AS SELECT 1;
+ERROR:  42P16: ON COMMIT can only be used on temporary tables
+-- Test foreign keys
+BEGIN;
+BEGIN
+CREATE TEMP TABLE temptest1(col int PRIMARY KEY);
+CREATE TABLE
+CREATE TEMP TABLE temptest2(col int REFERENCES temptest1)
+  ON COMMIT DELETE ROWS;
+CREATE TABLE
+INSERT INTO temptest1 VALUES (1);
+INSERT 0 1
+INSERT INTO temptest2 VALUES (1);
+INSERT 0 1
+COMMIT;
+COMMIT
+SELECT * FROM temptest1;
+ col 
+-----
+   1
+(1 row)
+
+SELECT * FROM temptest2;
+ col 
+-----
+(0 rows)
+
+BEGIN;
+BEGIN
+CREATE TEMP TABLE temptest3(col int PRIMARY KEY) ON COMMIT DELETE ROWS;
+CREATE TABLE
+CREATE TEMP TABLE temptest4(col int REFERENCES temptest3);
+CREATE TABLE
+COMMIT;
+ERROR:  0A000: unsupported ON COMMIT and foreign key combination
+DETAIL:  Table "temptest4" references "temptest3", but they do not have the same ON COMMIT setting.
+-- Test manipulation of temp schema's placement in search path
+create table public.whereami (f1 text);
+CREATE TABLE
+insert into public.whereami values ('public');
+INSERT 0 1
+create temp table whereami (f1 text);
+CREATE TABLE
+insert into whereami values ('temp');
+INSERT 0 1
+create function public.whoami() returns text
+  as $$select 'public'::text$$ language sql;
+CREATE FUNCTION
+create function pg_temp.whoami() returns text
+  as $$select 'temp'::text$$ language sql;
+CREATE FUNCTION
+-- default should have pg_temp implicitly first, but only for tables
+select * from whereami;
+  f1  
+------
+ temp
+(1 row)
+
+select whoami();
+ whoami 
+--------
+ public
+(1 row)
+
+-- can list temp first explicitly, but it still doesn't affect functions
+set search_path = pg_temp, public;
+SET
+select * from whereami;
+  f1  
+------
+ temp
+(1 row)
+
+select whoami();
+ whoami 
+--------
+ public
+(1 row)
+
+-- or put it last for security
+set search_path = public, pg_temp;
+SET
+select * from whereami;
+   f1   
+--------
+ public
+(1 row)
+
+select whoami();
+ whoami 
+--------
+ public
+(1 row)
+
+-- you can invoke a temp function explicitly, though
+select pg_temp.whoami();
+ whoami 
+--------
+ temp
+(1 row)
+
+drop table public.whereami;
+DROP TABLE

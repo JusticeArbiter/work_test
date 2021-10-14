@@ -1,0 +1,237 @@
+231c231
+< NOTICE:  00000: foreign-data wrapper "nonexistent" does not exist, skipping
+---
+> NOTICE:  foreign-data wrapper "nonexistent" does not exist, skipping
+304c304
+< NOTICE:  00000: drop cascades to 2 other objects
+---
+> NOTICE:  drop cascades to 2 other objects
+561c561
+< NOTICE:  00000: server "nonexistent" does not exist, skipping
+---
+> NOTICE:  server "nonexistent" does not exist, skipping
+638c638
+< NOTICE:  00000: drop cascades to user mapping for foreign_data_user on server s3
+---
+> NOTICE:  drop cascades to user mapping for foreign_data_user on server s3
+757c757
+< NOTICE:  00000: role "regress_test_missing_role" does not exist, skipping
+---
+> NOTICE:  role "regress_test_missing_role" does not exist, skipping
+760c760
+< NOTICE:  00000: server does not exist, skipping
+---
+> NOTICE:  server does not exist, skipping
+763c763
+< NOTICE:  00000: user mapping "public" does not exist for the server, skipping
+---
+> NOTICE:  user mapping "public" does not exist for the server, skipping
+962c962
+< NOTICE:  00000: constraint "no_const" of relation "ft1" does not exist, skipping
+---
+> NOTICE:  constraint "no_const" of relation "ft1" does not exist, skipping
+973c973
+< NOTICE:  00000: column "no_column" of relation "ft1" does not exist, skipping
+---
+> NOTICE:  column "no_column" of relation "ft1" does not exist, skipping
+1006c1006
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1009c1009
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1012c1012
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1015c1015
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1018c1018
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1021c1021
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1024c1024
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1027c1027
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1030c1030
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1033c1033
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1037c1037
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1040c1040
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1043c1043
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1046c1046
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1049c1049
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1052c1052
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1055c1055
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1058c1058
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1061c1061
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1064c1064
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1067c1067
+< NOTICE:  00000: relation "doesnt_exist_ft1" does not exist, skipping
+---
+> NOTICE:  relation "doesnt_exist_ft1" does not exist, skipping
+1410c1410
+< NOTICE:  00000: drop cascades to 2 other objects
+---
+> NOTICE:  drop cascades to 2 other objects
+1495c1495
+< NOTICE:  00000: drop cascades to 2 other objects
+---
+> NOTICE:  drop cascades to 2 other objects
+1564c1564
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1586d1585
+< Replica Identity: FULL
+1613c1612
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1634,1636c1633,1635
+< NOTICE:  00000: merging column "c1" with inherited definition
+< NOTICE:  00000: merging column "c2" with inherited definition
+< NOTICE:  00000: merging column "c3" with inherited definition
+---
+> NOTICE:  merging column "c1" with inherited definition
+> NOTICE:  merging column "c2" with inherited definition
+> NOTICE:  merging column "c3" with inherited definition
+1647a1647,1648
+> Child tables: ct3,
+>               ft3
+1657d1657
+< Replica Identity: FULL
+1692c1692
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1708a1709,1710
+> Child tables: ct3,
+>               ft3
+1723d1724
+< Replica Identity: FULL
+1775c1776
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1791a1793,1794
+> Child tables: ct3,
+>               ft3
+1811c1814
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1822a1826,1827
+> Child tables: ct3,
+>               ft3
+1851c1856
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1864a1870,1871
+> Child tables: ct3,
+>               ft3
+1870c1877
+< NOTICE:  00000: drop cascades to 2 other objects
+---
+> NOTICE:  drop cascades to 2 other objects
+1897c1904
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1931c1938
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1959c1966
+< Replica Identity: FULL
+---
+> Child tables: ft2
+1987c1994
+< Replica Identity: FULL
+---
+> Child tables: ft2
+2018c2025
+< Replica Identity: FULL
+---
+> Child tables: ft2
+2053c2060
+< Replica Identity: FULL
+---
+> Child tables: ft2
+2075c2082
+< NOTICE:  00000: drop cascades to foreign table ft2
+---
+> NOTICE:  drop cascades to foreign table ft2
+2091c2098
+< NOTICE:  00000: foreign table "no_table" does not exist, skipping
+---
+> NOTICE:  foreign table "no_table" does not exist, skipping
+2103c2110
+< NOTICE:  00000: drop cascades to user mapping for regress_test_role on server s5
+---
+> NOTICE:  drop cascades to user mapping for regress_test_role on server s5
+2114c2121
+< NOTICE:  00000: drop cascades to user mapping for public on server t1
+---
+> NOTICE:  drop cascades to user mapping for public on server t1
+2120c2127
+< NOTICE:  00000: drop cascades to 5 other objects
+---
+> NOTICE:  drop cascades to 5 other objects
+2123c2130
+< NOTICE:  00000: drop cascades to 2 other objects
+---
+> NOTICE:  drop cascades to 2 other objects
+2142c2149
+< NOTICE:  00000: drop cascades to server s0
+---
+> NOTICE:  drop cascades to server s0

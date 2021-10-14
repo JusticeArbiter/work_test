@@ -1,0 +1,20 @@
+12c12
+< psql:/home/highgo/test_sql/sql/psql.sql:14: could not set variable "bad name"
+---
+> psql:/home/postgres/build_out/sql/psql.sql:14: could not set variable "bad name"
+40c40
+< psql:/home/highgo/test_sql/sql/psql.sql:28: more than one row returned for \gset
+---
+> psql:/home/postgres/build_out/sql/psql.sql:28: more than one row returned for \gset
+42c42
+< psql:/home/highgo/test_sql/sql/psql.sql:29: no rows returned for \gset
+---
+> psql:/home/postgres/build_out/sql/psql.sql:29: no rows returned for \gset
+51c51
+< psql:/home/highgo/test_sql/sql/psql.sql:36: more than one row returned for \gset
+---
+> psql:/home/postgres/build_out/sql/psql.sql:36: more than one row returned for \gset
+53c53
+< psql:/home/highgo/test_sql/sql/psql.sql:37: no rows returned for \gset
+---
+> psql:/home/postgres/build_out/sql/psql.sql:37: no rows returned for \gset

@@ -1,0 +1,208 @@
+-- create a tablespace using WITH clause
+CREATE TABLESPACE testspacewith LOCATION '/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace' WITH (some_nonexistent_parameter = true); -- fail
+ERROR:  22023: unrecognized parameter "some_nonexistent_parameter"
+CREATE TABLESPACE testspacewith LOCATION '/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace' WITH (random_page_cost = 3.0); -- ok
+ERROR:  42501: could not set permissions on directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace": Permission denied
+-- check to see the parameter was used
+SELECT spcoptions FROM pg_tablespace WHERE spcname = 'testspacewith';
+ spcoptions 
+------------
+(0 rows)
+
+-- drop the tablespace so we can re-use the location
+DROP TABLESPACE testspacewith;
+ERROR:  42704: tablespace "testspacewith" does not exist
+-- create a tablespace we can use
+CREATE TABLESPACE testspace LOCATION '/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace';
+ERROR:  42501: could not set permissions on directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace": Permission denied
+-- try setting and resetting some properties for the new tablespace
+ALTER TABLESPACE testspace SET (random_page_cost = 1.0);
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLESPACE testspace SET (some_nonexistent_parameter = true);  -- fail
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLESPACE testspace RESET (random_page_cost = 2.0); -- fail
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLESPACE testspace RESET (random_page_cost, seq_page_cost); -- ok
+ERROR:  42704: tablespace "testspace" does not exist
+-- create a schema we can use
+CREATE SCHEMA testschema;
+CREATE SCHEMA
+-- try a table
+CREATE TABLE testschema.foo (i int) TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+SELECT relname, spcname FROM pg_catalog.pg_tablespace t, pg_catalog.pg_class c
+    where c.reltablespace = t.oid AND c.relname = 'foo';
+ relname | spcname 
+---------+---------
+(0 rows)
+
+INSERT INTO testschema.foo VALUES(1);
+ERROR:  42P01: relation "testschema.foo" does not exist
+LINE 1: INSERT INTO testschema.foo VALUES(1);
+                    ^
+INSERT INTO testschema.foo VALUES(2);
+ERROR:  42P01: relation "testschema.foo" does not exist
+LINE 1: INSERT INTO testschema.foo VALUES(2);
+                    ^
+-- tables from dynamic sources
+CREATE TABLE testschema.asselect TABLESPACE testspace AS SELECT 1;
+ERROR:  42704: tablespace "testspace" does not exist
+SELECT relname, spcname FROM pg_catalog.pg_tablespace t, pg_catalog.pg_class c
+    where c.reltablespace = t.oid AND c.relname = 'asselect';
+ relname | spcname 
+---------+---------
+(0 rows)
+
+PREPARE selectsource(int) AS SELECT $1;
+PREPARE
+CREATE TABLE testschema.asexecute TABLESPACE testspace
+    AS EXECUTE selectsource(2);
+ERROR:  42704: tablespace "testspace" does not exist
+SELECT relname, spcname FROM pg_catalog.pg_tablespace t, pg_catalog.pg_class c
+    where c.reltablespace = t.oid AND c.relname = 'asexecute';
+ relname | spcname 
+---------+---------
+(0 rows)
+
+-- index
+CREATE INDEX foo_idx on testschema.foo(i) TABLESPACE testspace;
+ERROR:  42P01: relation "testschema.foo" does not exist
+SELECT relname, spcname FROM pg_catalog.pg_tablespace t, pg_catalog.pg_class c
+    where c.reltablespace = t.oid AND c.relname = 'foo_idx';
+ relname | spcname 
+---------+---------
+(0 rows)
+
+-- check that default_tablespace doesn't affect ALTER TABLE index rebuilds
+CREATE TABLE testschema.test_default_tab(id bigint) TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+INSERT INTO testschema.test_default_tab VALUES (1);
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+LINE 1: INSERT INTO testschema.test_default_tab VALUES (1);
+                    ^
+CREATE INDEX test_index1 on testschema.test_default_tab (id);
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+CREATE INDEX test_index2 on testschema.test_default_tab (id) TABLESPACE testspace;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+\d testschema.test_index1
+psql:/home/highgo/test_sql/sql/tablespace.sql:52: Did not find any relation named "testschema.test_index1".
+\d testschema.test_index2
+psql:/home/highgo/test_sql/sql/tablespace.sql:53: Did not find any relation named "testschema.test_index2".
+-- use a custom tablespace for default_tablespace
+SET default_tablespace TO testspace;
+ERROR:  22023: invalid value for parameter "default_tablespace": "testspace"
+DETAIL:  Tablespace "testspace" does not exist.
+-- tablespace should not change if no rewrite
+ALTER TABLE testschema.test_default_tab ALTER id TYPE bigint;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+\d testschema.test_index1
+psql:/home/highgo/test_sql/sql/tablespace.sql:58: Did not find any relation named "testschema.test_index1".
+\d testschema.test_index2
+psql:/home/highgo/test_sql/sql/tablespace.sql:59: Did not find any relation named "testschema.test_index2".
+SELECT * FROM testschema.test_default_tab;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+LINE 1: SELECT * FROM testschema.test_default_tab;
+                      ^
+-- tablespace should not change even if there is an index rewrite
+ALTER TABLE testschema.test_default_tab ALTER id TYPE int;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+\d testschema.test_index1
+psql:/home/highgo/test_sql/sql/tablespace.sql:63: Did not find any relation named "testschema.test_index1".
+\d testschema.test_index2
+psql:/home/highgo/test_sql/sql/tablespace.sql:64: Did not find any relation named "testschema.test_index2".
+SELECT * FROM testschema.test_default_tab;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+LINE 1: SELECT * FROM testschema.test_default_tab;
+                      ^
+-- now use the default tablespace for default_tablespace
+SET default_tablespace TO '';
+SET
+-- tablespace should not change if no rewrite
+ALTER TABLE testschema.test_default_tab ALTER id TYPE int;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+\d testschema.test_index1
+psql:/home/highgo/test_sql/sql/tablespace.sql:70: Did not find any relation named "testschema.test_index1".
+\d testschema.test_index2
+psql:/home/highgo/test_sql/sql/tablespace.sql:71: Did not find any relation named "testschema.test_index2".
+-- tablespace should not change even if there is an index rewrite
+ALTER TABLE testschema.test_default_tab ALTER id TYPE bigint;
+ERROR:  42P01: relation "testschema.test_default_tab" does not exist
+\d testschema.test_index1
+psql:/home/highgo/test_sql/sql/tablespace.sql:74: Did not find any relation named "testschema.test_index1".
+\d testschema.test_index2
+psql:/home/highgo/test_sql/sql/tablespace.sql:75: Did not find any relation named "testschema.test_index2".
+DROP TABLE testschema.test_default_tab;
+ERROR:  42P01: table "test_default_tab" does not exist
+-- let's try moving a table from one place to another
+CREATE TABLE testschema.atable AS VALUES (1), (2);
+SELECT 2
+CREATE UNIQUE INDEX anindex ON testschema.atable(column1);
+CREATE INDEX
+ALTER TABLE testschema.atable SET TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER INDEX testschema.anindex SET TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+INSERT INTO testschema.atable VALUES(3);	-- ok
+INSERT 0 1
+INSERT INTO testschema.atable VALUES(1);	-- fail (checks index)
+ERROR:  23505: duplicate key value violates unique constraint "anindex"
+DETAIL:  Key (column1)=(1) already exists.
+SELECT COUNT(*) FROM testschema.atable;		-- checks heap
+ count 
+-------
+     3
+(1 row)
+
+-- Will fail with bad path
+CREATE TABLESPACE badspace LOCATION '/no/such/location';
+ERROR:  58P01: directory "/no/such/location" does not exist
+-- No such tablespace
+CREATE TABLE bar (i int) TABLESPACE nosuchspace;
+ERROR:  42704: tablespace "nosuchspace" does not exist
+-- Fail, not empty
+DROP TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+CREATE ROLE tablespace_testuser1 login;
+CREATE ROLE
+CREATE ROLE tablespace_testuser2 login;
+CREATE ROLE
+GRANT USAGE ON SCHEMA testschema TO tablespace_testuser2;
+GRANT
+ALTER TABLESPACE testspace OWNER TO tablespace_testuser1;
+ERROR:  42704: tablespace "testspace" does not exist
+CREATE TABLE testschema.tablespace_acl (c int);
+CREATE TABLE
+-- new owner lacks permission to create this index from scratch
+CREATE INDEX k ON testschema.tablespace_acl (c) TABLESPACE testspace;
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLE testschema.tablespace_acl OWNER TO tablespace_testuser2;
+ALTER TABLE
+SET SESSION ROLE tablespace_testuser2;
+SET
+CREATE TABLE tablespace_table (i int) TABLESPACE testspace; -- fail
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLE testschema.tablespace_acl ALTER c TYPE bigint;
+ALTER TABLE
+RESET ROLE;
+RESET
+ALTER TABLESPACE testspace RENAME TO testspace_renamed;
+ERROR:  42704: tablespace "testspace" does not exist
+ALTER TABLE ALL IN TABLESPACE testspace_renamed SET TABLESPACE pg_default;
+ERROR:  42704: tablespace "testspace_renamed" does not exist
+ALTER INDEX ALL IN TABLESPACE testspace_renamed SET TABLESPACE pg_default;
+ERROR:  42704: tablespace "testspace_renamed" does not exist
+-- Should show notice that nothing was done
+ALTER TABLE ALL IN TABLESPACE testspace_renamed SET TABLESPACE pg_default;
+ERROR:  42704: tablespace "testspace_renamed" does not exist
+-- Should succeed
+DROP TABLESPACE testspace_renamed;
+ERROR:  42704: tablespace "testspace_renamed" does not exist
+DROP SCHEMA testschema CASCADE;
+NOTICE:  00000: drop cascades to 2 other objects
+DETAIL:  drop cascades to table testschema.atable
+drop cascades to table testschema.tablespace_acl
+DROP SCHEMA
+DROP ROLE tablespace_testuser1;
+DROP ROLE
+DROP ROLE tablespace_testuser2;
+DROP ROLE

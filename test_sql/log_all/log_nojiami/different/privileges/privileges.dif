@@ -1,0 +1,24 @@
+51c51
+< NOTICE:  00000: role "regressuser2" is already a member of role "regressgroup2"
+---
+> NOTICE:  role "regressuser2" is already a member of role "regressgroup2"
+351c351
+< NOTICE:  00000: drop cascades to operator >>>(integer,integer)
+---
+> NOTICE:  drop cascades to operator >>>(integer,integer)
+1384c1384
+< NOTICE:  00000: role "regressuser5" is already a member of role "regressgroup2"
+---
+> NOTICE:  role "regressuser5" is already a member of role "regressgroup2"
+1398c1398
+< NOTICE:  00000: role "regressuser5" is already a member of role "regressgroup2"
+---
+> NOTICE:  role "regressuser5" is already a member of role "regressgroup2"
+1817c1817
+< NOTICE:  00000: drop cascades to table testns.acltest1
+---
+> NOTICE:  drop cascades to table testns.acltest1
+2017c2017
+< NOTICE:  00000: drop cascades to view atestv4
+---
+> NOTICE:  drop cascades to view atestv4

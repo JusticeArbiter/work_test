@@ -1,0 +1,16 @@
+817c817
+< NOTICE:  00000: drop cascades to server alt_fserv2
+---
+> NOTICE:  drop cascades to server alt_fserv2
+820c820
+< NOTICE:  00000: drop cascades to server alt_fserv3
+---
+> NOTICE:  drop cascades to server alt_fserv3
+829c829
+< NOTICE:  00000: drop cascades to 26 other objects
+---
+> NOTICE:  drop cascades to 26 other objects
+858c858
+< NOTICE:  00000: drop cascades to 9 other objects
+---
+> NOTICE:  drop cascades to 9 other objects

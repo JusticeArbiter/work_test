@@ -1,0 +1,81 @@
+16,19c16
+< ERROR:  42883: function interpt_pp(path, path) does not exist
+< LINE 3:  interpt_pp(ih.thepath, r.thepath) AS exit
+<          ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+> CREATE VIEW
+96c93
+< NOTICE:  00000: view "v1_temp" will be a temporary view
+---
+> NOTICE:  view "v1_temp" will be a temporary view
+106c103
+< NOTICE:  00000: view "v3_temp" will be a temporary view
+---
+> NOTICE:  view "v3_temp" will be a temporary view
+125c122
+< NOTICE:  00000: view "v4_temp" will be a temporary view
+---
+> NOTICE:  view "v4_temp" will be a temporary view
+132c129
+< NOTICE:  00000: view "v5_temp" will be a temporary view
+---
+> NOTICE:  view "v5_temp" will be a temporary view
+146c143
+< NOTICE:  00000: view "v6_temp" will be a temporary view
+---
+> NOTICE:  view "v6_temp" will be a temporary view
+149c146
+< NOTICE:  00000: view "v7_temp" will be a temporary view
+---
+> NOTICE:  view "v7_temp" will be a temporary view
+152c149
+< NOTICE:  00000: view "v8_temp" will be a temporary view
+---
+> NOTICE:  view "v8_temp" will be a temporary view
+155c152
+< NOTICE:  00000: view "v9_temp" will be a temporary view
+---
+> NOTICE:  view "v9_temp" will be a temporary view
+159c156
+< NOTICE:  00000: view "v10_temp" will be a temporary view
+---
+> NOTICE:  view "v10_temp" will be a temporary view
+162c159
+< NOTICE:  00000: view "v11_temp" will be a temporary view
+---
+> NOTICE:  view "v11_temp" will be a temporary view
+165c162
+< NOTICE:  00000: view "v12_temp" will be a temporary view
+---
+> NOTICE:  view "v12_temp" will be a temporary view
+175c172
+< NOTICE:  00000: view "v13_temp" will be a temporary view
+---
+> NOTICE:  view "v13_temp" will be a temporary view
+227c224
+< NOTICE:  00000: view "temporal1" will be a temporary view
+---
+> NOTICE:  view "temporal1" will be a temporary view
+232c229
+< NOTICE:  00000: view "temporal2" will be a temporary view
+---
+> NOTICE:  view "temporal2" will be a temporary view
+237c234
+< NOTICE:  00000: view "temporal3" will be a temporary view
+---
+> NOTICE:  view "temporal3" will be a temporary view
+242c239
+< NOTICE:  00000: view "temporal4" will be a temporary view
+---
+> NOTICE:  view "temporal4" will be a temporary view
+295c292
+< NOTICE:  00000: view "mytempview" will be a temporary view
+---
+> NOTICE:  view "mytempview" will be a temporary view
+1660,1661c1657,1658
+< NOTICE:  42622: identifier "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxy" will be truncated to "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+< NOTICE:  42622: identifier "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz" will be truncated to "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+---
+> NOTICE:  identifier "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxy" will be truncated to "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+> NOTICE:  identifier "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz" will be truncated to "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"

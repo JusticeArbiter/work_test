@@ -1,0 +1,4 @@
+114c114
+< psql:/home/highgo/test_sql/sql/dependency.sql:73: Did not find any relation named "deptest".
+---
+> psql:/home/postgres/build_out/sql/dependency.sql:73: Did not find any relation named "deptest".

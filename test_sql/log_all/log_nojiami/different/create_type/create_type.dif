@@ -1,0 +1,28 @@
+17c17
+< ERROR:  42883: function widget_in(cstring) does not exist
+---
+> CREATE TYPE
+26c26
+< ERROR:  42883: function int44in(cstring) does not exist
+---
+> CREATE TYPE
+173c173
+< ERROR:  42704: type "widget" does not exist
+---
+> ERROR:  22023: invalid NUMERIC type modifier
+177,179c177
+< ERROR:  42704: type "widget" does not exist
+< LINE 1: CREATE TEMP TABLE mytab (foo widget(42,13));
+<                                      ^
+---
+> CREATE TABLE
+182,184c180,184
+< ERROR:  42P01: relation "mytab" does not exist
+< LINE 2: WHERE attrelid = 'mytab'::regclass AND attnum > 0;
+<                          ^
+---
+>   format_type  
+> ---------------
+>  widget(42,13)
+> (1 row)
+> 

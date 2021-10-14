@@ -1,0 +1,187 @@
+--
+-- Hot Standby tests
+--
+-- hs_standby_disallowed.sql
+--
+SET transaction_read_only = off;
+SET
+begin transaction read write;
+BEGIN
+commit;
+COMMIT
+-- SELECT
+select * from hs1 FOR SHARE;
+ col1 
+------
+    1
+(1 row)
+
+select * from hs1 FOR UPDATE;
+ col1 
+------
+    1
+(1 row)
+
+-- DML
+BEGIN;
+BEGIN
+insert into hs1 values (37);
+INSERT 0 1
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+delete from hs1 where col1 = 1;
+DELETE 1
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+update hs1 set col1 = NULL where col1 > 0;
+ERROR:  23502: null value in column "col1" violates not-null constraint
+DETAIL:  Failing row contains (null).
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+truncate hs3;
+TRUNCATE TABLE
+ROLLBACK;
+ROLLBACK
+-- DDL
+create temporary table hstemp1 (col1 integer);
+CREATE TABLE
+BEGIN;
+BEGIN
+drop table hs2;
+DROP TABLE
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+create table hs4 (col1 integer);
+CREATE TABLE
+ROLLBACK;
+ROLLBACK
+-- Sequences
+SELECT nextval('hsseq');
+ nextval 
+---------
+       1
+(1 row)
+
+-- Two-phase commit transaction stuff
+BEGIN;
+BEGIN
+SELECT count(*) FROM hs1;
+ count 
+-------
+     1
+(1 row)
+
+PREPARE TRANSACTION 'foobar';
+ERROR:  55000: prepared transactions are disabled
+HINT:  Set max_prepared_transactions to a nonzero value.
+ROLLBACK;
+WARNING:  25P01: there is no transaction in progress
+ROLLBACK
+BEGIN;
+BEGIN
+SELECT count(*) FROM hs1;
+ count 
+-------
+     1
+(1 row)
+
+COMMIT PREPARED 'foobar';
+ERROR:  25001: COMMIT PREPARED cannot run inside a transaction block
+ROLLBACK;
+ROLLBACK
+BEGIN;
+BEGIN
+SELECT count(*) FROM hs1;
+ count 
+-------
+     1
+(1 row)
+
+PREPARE TRANSACTION 'foobar';
+ERROR:  55000: prepared transactions are disabled
+HINT:  Set max_prepared_transactions to a nonzero value.
+ROLLBACK PREPARED 'foobar';
+ERROR:  42704: prepared transaction with identifier "foobar" does not exist
+ROLLBACK;
+WARNING:  25P01: there is no transaction in progress
+ROLLBACK
+BEGIN;
+BEGIN
+SELECT count(*) FROM hs1;
+ count 
+-------
+     1
+(1 row)
+
+ROLLBACK PREPARED 'foobar';
+ERROR:  25001: ROLLBACK PREPARED cannot run inside a transaction block
+ROLLBACK;
+ROLLBACK
+-- Locks
+BEGIN;
+BEGIN
+LOCK hs1;
+LOCK TABLE
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+LOCK hs1 IN SHARE UPDATE EXCLUSIVE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+LOCK hs1 IN SHARE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+LOCK hs1 IN SHARE ROW EXCLUSIVE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+LOCK hs1 IN EXCLUSIVE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+BEGIN;
+BEGIN
+LOCK hs1 IN ACCESS EXCLUSIVE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+-- Listen
+listen a;
+LISTEN
+notify a;
+NOTIFY
+Asynchronous notification "a" received from server process with PID 112692.
+unlisten a;
+UNLISTEN
+unlisten *;
+UNLISTEN
+-- disallowed commands
+ANALYZE hs1;
+ANALYZE
+VACUUM hs2;
+VACUUM
+CLUSTER hs2 using hs1_pkey;
+ERROR:  42809: "hs1_pkey" is not an index for table "hs2"
+REINDEX TABLE hs2;
+REINDEX
+REVOKE SELECT ON hs1 FROM PUBLIC;
+REVOKE
+GRANT SELECT ON hs1 TO PUBLIC;
+GRANT

@@ -1,0 +1,18 @@
+123d122
+< Replica Identity: FULL
+136d134
+< Replica Identity: FULL
+146d143
+< Replica Identity: FULL
+158d154
+< Replica Identity: FULL
+166c162
+< psql:/home/highgo/test_sql/sql/matview.sql:51: Did not find any relation named "tvm".
+---
+> psql:/home/postgres/build_out/sql/matview.sql:51: Did not find any relation named "tvm".
+178d173
+< Replica Identity: FULL
+193d187
+< Replica Identity: FULL
+412d405
+< Replica Identity: FULL

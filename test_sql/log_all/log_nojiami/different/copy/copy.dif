@@ -1,0 +1,116 @@
+8c8
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/agg.data" for reading: Permission denied
+---
+> COPY 4
+10c10
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/onek.data" for reading: Permission denied
+---
+> COPY 1000
+12c12
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for writing: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for writing: No such file or directory
+14c14
+< DELETE 0
+---
+> DELETE 1000
+16c16
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: No such file or directory
+18c18
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/tenk.data" for reading: Permission denied
+---
+> COPY 10000
+20c20
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/rect.data" for reading: Permission denied
+---
+> COPY 3378
+22c22
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/person.data" for reading: Permission denied
+---
+> COPY 50
+24c24
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/emp.data" for reading: Permission denied
+---
+> COPY 3
+26c26
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/student.data" for reading: Permission denied
+---
+> COPY 2
+28c28
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/stud_emp.data" for reading: Permission denied
+---
+> COPY 3
+30c30
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/streets.data" for reading: Permission denied
+---
+> COPY 5124
+32c32
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/real_city.data" for reading: Permission denied
+---
+> COPY 5
+34c34
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+36c36
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+38c38
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+40c40
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+42c42
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/tsearch.data" for reading: Permission denied
+---
+> COPY 508
+44c44
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/jsonb.data" for reading: Permission denied
+---
+> COPY 1012
+52c52
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/desc.data" for reading: Permission denied
+---
+> COPY 10000
+54c54
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+56c56
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/desc.data" for reading: Permission denied
+---
+> COPY 10000
+58c58
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/hash.data" for reading: Permission denied
+---
+> COPY 10000
+60c60
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/array.data" for reading: Permission denied
+---
+> COPY 103
+62c62
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/array.data" for reading: Permission denied
+---
+> COPY 103
+123c123
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for writing: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for writing: No such file or directory
+127c127
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for reading: No such file or directory
+144c144
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for writing: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for writing: No such file or directory
+146c146
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/copytest.csv" for reading: No such file or directory

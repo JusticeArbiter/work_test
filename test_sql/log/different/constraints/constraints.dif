@@ -1,0 +1,30 @@
+407c407
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/constro.data" for reading: Permission denied
+---
+> COPY 2
+409,411c409,413
+<  two | x | y | z 
+< -----+---+---+---
+< (0 rows)
+---
+>  two | x |       y       | z 
+> -----+---+---------------+---
+>      | 4 | !check failed | 5
+>      | 6 | OK            | 4
+> (2 rows)
+414c416,418
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/data/constrf.data" for reading: Permission denied
+---
+> ERROR:  23514: new row for relation "copy_tbl" violates check constraint "copy_con"
+> DETAIL:  Failing row contains (7, check failed, 6).
+> CONTEXT:  COPY copy_tbl, line 2: "7	check failed	6"
+416,418c420,424
+<  x | y | z 
+< ---+---+---
+< (0 rows)
+---
+>  x |       y       | z 
+> ---+---------------+---
+>  4 | !check failed | 5
+>  6 | OK            | 4
+> (2 rows)

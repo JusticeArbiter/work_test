@@ -1,0 +1,84 @@
+282c282
+<      0
+---
+>    100
+290c290
+<      0
+---
+>     10
+298c298
+<      0
+---
+>    100
+306c306
+<      0
+---
+>     10
+528,530c528,530
+<  max 
+< -----
+<     
+---
+>  max  
+> ------
+>  9997
+539c539
+<     
+---
+>    0
+850,852c850,852
+<                                                                                          QUERY PLAN                                                                                          
+< ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<  Hash Join
+---
+>                                                                                       QUERY PLAN                                                                                       
+> ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>  Nested Loop Semi Join
+854,860c854,855
+<    Hash Cond: (b.ten = CASE WHEN (hashed SubPlan 1) THEN int4_tbl.f1 ELSE NULL::integer END)
+<    ->  HashAggregate
+<          Output: b.ten
+<          Group Key: b.ten
+<          ->  Seq Scan on public.tenk1 b
+<                Output: b.unique1, b.unique2, b.two, b.four, b.ten, b.twenty, b.hundred, b.thousand, b.twothousand, b.fivethous, b.tenthous, b.odd, b.even, b.stringu1, b.stringu2, b.string4
+<    ->  Hash
+---
+>    Join Filter: (CASE WHEN (hashed SubPlan 1) THEN int4_tbl.f1 ELSE NULL::integer END = b.ten)
+>    ->  Seq Scan on public.int4_tbl
+862,863c857,858
+<          ->  Seq Scan on public.int4_tbl
+<                Output: int4_tbl.f1
+---
+>    ->  Seq Scan on public.tenk1 b
+>          Output: b.unique1, b.unique2, b.two, b.four, b.ten, b.twenty, b.hundred, b.thousand, b.twothousand, b.fivethous, b.tenthous, b.odd, b.even, b.stringu1, b.stringu2, b.string4
+865c860
+<      ->  Seq Scan on public.tenk1 a
+---
+>      ->  Index Only Scan using tenk1_unique1 on public.tenk1 a
+867c862
+< (15 rows)
+---
+> (10 rows)
+874c869,870
+< (0 rows)
+---
+>   0
+> (1 row)
+941c937,947
+< (0 rows)
+---
+>    0
+>    1
+>    2
+>    3
+>    4
+>    5
+>    6
+>    7
+>    8
+>    9
+> (10 rows)
+946c952
+<        1
+---
+>       11

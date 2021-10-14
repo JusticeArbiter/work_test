@@ -1,0 +1,12 @@
+287c287
+<      0
+---
+>     50
+1130c1130
+< ERROR:  42804: recursive query "foo" column 1 has type integer in non-recursive term but type bigint overall
+---
+> ERROR:  42804: recursive query "foo" column 1 has type integer in non-recursive term but type numeric overall
+1140c1140
+< ERROR:  42804: recursive query "foo" column 1 has type smallint in non-recursive term but type bigint overall
+---
+> ERROR:  42804: recursive query "foo" column 1 has type numeric(3,0) in non-recursive term but type numeric overall

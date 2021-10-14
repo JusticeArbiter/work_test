@@ -1,0 +1,224 @@
+32,35c32
+< ERROR:  42883: function reverse_name(name) does not exist
+< LINE 2:    SET stringu1 = reverse_name(onek.stringu1)
+<                           ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+> UPDATE 0
+41,44c38
+< ERROR:  42883: function reverse_name(name) does not exist
+< LINE 2:    SET stringu1 = reverse_name(onek2.stringu1)
+<                           ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+> UPDATE 0
+56c50
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for writing: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for writing: No such file or directory
+60c54
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: No such file or directory
+69c63
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/onek.data" for reading: No such file or directory
+76c70
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/stud_emp.data" for writing: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/stud_emp.data" for writing: No such file or directory
+78c72
+< DELETE 0
+---
+> DELETE 3
+80c74
+< ERROR:  42501: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/stud_emp.data" for reading: Permission denied
+---
+> ERROR:  58P01: could not open file "/home/postgres/postgresql-9.5.10/src/test/regress/results/stud_emp.data" for reading: No such file or directory
+484,486c478,483
+<  name | name 
+< ------+------
+< (0 rows)
+---
+>  name  |    name     
+> -------+-------------
+>  mike  | posthacking
+>  joe   | basketball
+>  sally | basketball
+> (3 rows)
+492,494c489,494
+<  name | name 
+< ------+------
+< (0 rows)
+---
+>  name  |    name     
+> -------+-------------
+>  mike  | posthacking
+>  joe   | basketball
+>  sally | basketball
+> (3 rows)
+502,505c502,508
+<     name    | name 
+< ------------+------
+<  skywalking | guts
+< (1 row)
+---
+>     name     |     name      
+> -------------+---------------
+>  basketball  | hightops
+>  posthacking | advil
+>  posthacking | peet's coffee
+>  skywalking  | guts
+> (4 rows)
+508,511c511,520
+<     name    | name 
+< ------------+------
+<  skywalking | guts
+< (1 row)
+---
+>     name     |     name      
+> -------------+---------------
+>  posthacking | advil
+>  posthacking | peet's coffee
+>  posthacking | advil
+>  posthacking | peet's coffee
+>  basketball  | hightops
+>  basketball  | hightops
+>  skywalking  | guts
+> (7 rows)
+519,521c528,534
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>  name  |    name     |     name      
+> -------+-------------+---------------
+>  mike  | posthacking | advil
+>  mike  | posthacking | peet's coffee
+>  joe   | basketball  | hightops
+>  sally | basketball  | hightops
+> (4 rows)
+527,529c540,546
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>  name  |    name     |     name      
+> -------+-------------+---------------
+>  mike  | posthacking | advil
+>  mike  | posthacking | peet's coffee
+>  joe   | basketball  | hightops
+>  sally | basketball  | hightops
+> (4 rows)
+536,538c553,559
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>      name      | name  |    name     
+> ---------------+-------+-------------
+>  advil         | mike  | posthacking
+>  peet's coffee | mike  | posthacking
+>  hightops      | joe   | basketball
+>  hightops      | sally | basketball
+> (4 rows)
+541,543c562,568
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>      name      | name  |    name     
+> ---------------+-------+-------------
+>  advil         | mike  | posthacking
+>  peet's coffee | mike  | posthacking
+>  hightops      | joe   | basketball
+>  hightops      | sally | basketball
+> (4 rows)
+546,548c571,577
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>      name      |    name     | name  
+> ---------------+-------------+-------
+>  advil         | posthacking | mike
+>  peet's coffee | posthacking | mike
+>  hightops      | basketball  | joe
+>  hightops      | basketball  | sally
+> (4 rows)
+551,553c580,586
+<  name | name | name 
+< ------+------+------
+< (0 rows)
+---
+>      name      |    name     | name  
+> ---------------+-------------+-------
+>  advil         | posthacking | mike
+>  peet's coffee | posthacking | mike
+>  hightops      | basketball  | joe
+>  hightops      | basketball  | sally
+> (4 rows)
+609c642
+<  
+---
+>  joe
+613,616c646,652
+< ERROR:  42883: function overpaid(emp) does not exist
+< LINE 1: SELECT name, overpaid(emp.*) FROM emp;
+<                      ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+>   name  | overpaid 
+> --------+----------
+>  sharon | t
+>  sam    | t
+>  bill   | t
+> (3 rows)
+> 
+633,636c669,678
+<     name    | person | name 
+< ------------+--------+------
+<  skywalking |        | guts
+< (1 row)
+---
+>     name     | person |     name      
+> -------------+--------+---------------
+>  posthacking | mike   | advil
+>  posthacking | mike   | peet's coffee
+>  posthacking | jeff   | advil
+>  posthacking | jeff   | peet's coffee
+>  basketball  | joe    | hightops
+>  basketball  | sally  | hightops
+>  skywalking  |        | guts
+> (7 rows)
+639,642c681,690
+<     name    | person | name 
+< ------------+--------+------
+<  skywalking |        | guts
+< (1 row)
+---
+>     name     | person |     name      
+> -------------+--------+---------------
+>  posthacking | mike   | advil
+>  posthacking | mike   | peet's coffee
+>  posthacking | jeff   | advil
+>  posthacking | jeff   | peet's coffee
+>  basketball  | joe    | hightops
+>  basketball  | sally  | hightops
+>  skywalking  |        | guts
+> (7 rows)
+658,661c706,713
+< ERROR:  42883: function oldstyle_length(integer, text) does not exist
+< LINE 1: select i, length(t), octet_length(t), oldstyle_length(i,t) f...
+<                                               ^
+< HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+---
+>   i   | length | octet_length | oldstyle_length 
+> ------+--------+--------------+-----------------
+>       |        |              |                
+>     0 |      2 |            2 |               2
+>  1000 |      2 |            2 |            1002
+>     0 |  50000 |        50000 |           50000
+> (4 rows)
+> 

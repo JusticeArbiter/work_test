@@ -1,0 +1,89 @@
+278c278,283
+< (0 rows)
+---
+>        0
+>        1
+>        2
+>        3
+>        4
+> (5 rows)
+361a367
+> Number of child tables: 1 (Use \d+ to list them.)
+390a397
+> Number of child tables: 1 (Use \d+ to list them.)
+419a427
+> Number of child tables: 1 (Use \d+ to list them.)
+1039c1047
+< INSERT 35703 1
+---
+> INSERT 45771 1
+1046c1054
+< INSERT 35705 1
+---
+> INSERT 45773 1
+1124c1132
+< INSERT 35740 1
+---
+> INSERT 45808 1
+1131c1139
+< INSERT 35742 1
+---
+> INSERT 45810 1
+1271c1279
+< INSERT 35783 1
+---
+> INSERT 45851 1
+1432c1440
+< INSERT 35815 1
+---
+> INSERT 45883 1
+1531c1539
+< INSERT 35816 1
+---
+> INSERT 45884 1
+1549c1557
+< INSERT 35817 1
+---
+> INSERT 45885 1
+2044c2052
+< INSERT 35945 1
+---
+> INSERT 46013 1
+2080c2088
+< INSERT 35959 1
+---
+> INSERT 46027 1
+2138c2146
+< INSERT 35979 1
+---
+> INSERT 46047 1
+2438a2447
+> Number of child tables: 1 (Use \d+ to list them.)
+2469a2479
+> Number of child tables: 1 (Use \d+ to list them.)
+2510a2521
+> Number of child tables: 1 (Use \d+ to list them.)
+2550a2562
+> Number of child tables: 1 (Use \d+ to list them.)
+2894c2906
+< ERROR:  42883: function ttdummy() does not exist
+---
+> CREATE TRIGGER
+2896c2908,2912
+< ERROR:  25P02: current transaction is aborted, commands ignored until end of transaction block
+---
+>   relname  |     max_lockmode      
+> -----------+-----------------------
+>  alterlock | ShareRowExclusiveLock
+> (1 row)
+> 
+3210a3227
+> Number of child tables: 1 (Use \d+ to list them.)
+3232a3250
+> Number of child tables: 1 (Use \d+ to list them.)
+3254a3273
+> Number of child tables: 1 (Use \d+ to list them.)
+3274a3294
+> Number of child tables: 1 (Use \d+ to list them.)
+3294a3315
+> Number of child tables: 1 (Use \d+ to list them.)

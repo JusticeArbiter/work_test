@@ -1,0 +1,165 @@
+--
+-- SELECT_INTO
+--
+SELECT *
+   INTO TABLE tmp1
+   FROM onek
+   WHERE onek.unique1 < 2;
+SELECT 0
+DROP TABLE tmp1;
+DROP TABLE
+SELECT *
+   INTO TABLE tmp1
+   FROM onek2
+   WHERE onek2.unique1 < 2;
+SELECT 0
+DROP TABLE tmp1;
+DROP TABLE
+--
+-- SELECT INTO and INSERT permission, if owner is not allowed to insert.
+--
+CREATE SCHEMA selinto_schema;
+CREATE SCHEMA
+CREATE USER selinto_user;
+CREATE ROLE
+ALTER DEFAULT PRIVILEGES FOR ROLE selinto_user
+	  REVOKE INSERT ON TABLES FROM selinto_user;
+ALTER DEFAULT PRIVILEGES
+GRANT ALL ON SCHEMA selinto_schema TO public;
+GRANT
+SET SESSION AUTHORIZATION selinto_user;
+SET
+SELECT * INTO TABLE selinto_schema.tmp1
+	  FROM pg_class WHERE relname like '%a%';	-- Error
+ERROR:  42501: permission denied for relation tmp1
+SELECT oid AS clsoid, relname, relnatts + 10 AS x
+	  INTO selinto_schema.tmp2
+	  FROM pg_class WHERE relname like '%b%';	-- Error
+ERROR:  42501: permission denied for relation tmp2
+CREATE TABLE selinto_schema.tmp3 (a,b,c)
+	   AS SELECT oid,relname,relacl FROM pg_class
+	   WHERE relname like '%c%';	-- Error
+ERROR:  42501: permission denied for relation tmp3
+RESET SESSION AUTHORIZATION;
+RESET
+ALTER DEFAULT PRIVILEGES FOR ROLE selinto_user
+	  GRANT INSERT ON TABLES TO selinto_user;
+ALTER DEFAULT PRIVILEGES
+SET SESSION AUTHORIZATION selinto_user;
+SET
+SELECT * INTO TABLE selinto_schema.tmp1
+	  FROM pg_class WHERE relname like '%a%';	-- OK
+SELECT 401
+SELECT oid AS clsoid, relname, relnatts + 10 AS x
+	  INTO selinto_schema.tmp2
+	  FROM pg_class WHERE relname like '%b%';	-- OK
+SELECT 111
+CREATE TABLE selinto_schema.tmp3 (a,b,c)
+	   AS SELECT oid,relname,relacl FROM pg_class
+	   WHERE relname like '%c%';	-- OK
+SELECT 134
+RESET SESSION AUTHORIZATION;
+RESET
+DROP SCHEMA selinto_schema CASCADE;
+NOTICE:  00000: drop cascades to 3 other objects
+DETAIL:  drop cascades to table selinto_schema.tmp1
+drop cascades to table selinto_schema.tmp2
+drop cascades to table selinto_schema.tmp3
+DROP SCHEMA
+DROP USER selinto_user;
+DROP ROLE
+-- Tests for WITH NO DATA and column name consistency
+CREATE TABLE ctas_base (i int, j int);
+CREATE TABLE
+INSERT INTO ctas_base VALUES (1, 2);
+INSERT 0 1
+CREATE TABLE ctas_nodata (ii, jj, kk) AS SELECT i, j FROM ctas_base; -- Error
+ERROR:  42601: too many column names were specified
+CREATE TABLE ctas_nodata (ii, jj, kk) AS SELECT i, j FROM ctas_base WITH NO DATA; -- Error
+ERROR:  42601: too many column names were specified
+CREATE TABLE ctas_nodata (ii, jj) AS SELECT i, j FROM ctas_base; -- OK
+SELECT 1
+CREATE TABLE ctas_nodata_2 (ii, jj) AS SELECT i, j FROM ctas_base WITH NO DATA; -- OK
+CREATE TABLE AS
+CREATE TABLE ctas_nodata_3 (ii) AS SELECT i, j FROM ctas_base; -- OK
+SELECT 1
+CREATE TABLE ctas_nodata_4 (ii) AS SELECT i, j FROM ctas_base WITH NO DATA; -- OK
+CREATE TABLE AS
+SELECT * FROM ctas_nodata;
+ ii | jj 
+----+----
+  1 |  2
+(1 row)
+
+SELECT * FROM ctas_nodata_2;
+ ii | jj 
+----+----
+(0 rows)
+
+SELECT * FROM ctas_nodata_3;
+ ii | j 
+----+---
+  1 | 2
+(1 row)
+
+SELECT * FROM ctas_nodata_4;
+ ii | j 
+----+---
+(0 rows)
+
+DROP TABLE ctas_base;
+DROP TABLE
+DROP TABLE ctas_nodata;
+DROP TABLE
+DROP TABLE ctas_nodata_2;
+DROP TABLE
+DROP TABLE ctas_nodata_3;
+DROP TABLE
+DROP TABLE ctas_nodata_4;
+DROP TABLE
+--
+-- CREATE TABLE AS/SELECT INTO as last command in a SQL function
+-- have been known to cause problems
+--
+CREATE FUNCTION make_table() RETURNS VOID
+AS $$
+  CREATE TABLE created_table AS SELECT * FROM int8_tbl;
+$$ LANGUAGE SQL;
+CREATE FUNCTION
+SELECT make_table();
+ make_table 
+------------
+ 
+(1 row)
+
+SELECT * FROM created_table;
+        q1        |        q2         
+------------------+-------------------
+              123 |               456
+              123 |  4567890123456789
+ 4567890123456789 |               123
+ 4567890123456789 |  4567890123456789
+ 4567890123456789 | -4567890123456789
+(5 rows)
+
+DROP TABLE created_table;
+DROP TABLE
+--
+-- Disallowed uses of SELECT ... INTO.  All should fail
+--
+DECLARE foo CURSOR FOR SELECT 1 INTO b;
+ERROR:  42601: SELECT ... INTO is not allowed here
+LINE 1: DECLARE foo CURSOR FOR SELECT 1 INTO b;
+                                             ^
+COPY (SELECT 1 INTO frak UNION SELECT 2) TO 'blob';
+ERROR:  0A000: COPY (SELECT INTO) is not supported
+SELECT * FROM (SELECT 1 INTO f) bar;
+ERROR:  42601: SELECT ... INTO is not allowed here
+LINE 1: SELECT * FROM (SELECT 1 INTO f) bar;
+                                     ^
+CREATE VIEW foo AS SELECT 1 INTO b;
+ERROR:  0A000: views must not contain SELECT INTO
+INSERT INTO b SELECT 1 INTO f;
+ERROR:  42601: SELECT ... INTO is not allowed here
+LINE 1: INSERT INTO b SELECT 1 INTO f;
+                                    ^

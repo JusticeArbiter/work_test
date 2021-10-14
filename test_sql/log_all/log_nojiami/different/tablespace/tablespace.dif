@@ -1,0 +1,48 @@
+5c5
+< ERROR:  42501: could not set permissions on directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace": Permission denied
+---
+> ERROR:  58P01: directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace" does not exist
+17c17
+< ERROR:  42501: could not set permissions on directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace": Permission denied
+---
+> ERROR:  58P01: directory "/home/postgres/postgresql-9.5.10/src/test/regress/testtablespace" does not exist
+88c88
+< psql:/home/highgo/test_sql/sql/tablespace.sql:52: Did not find any relation named "testschema.test_index1".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:52: Did not find any relation named "testschema.test_index1".
+90c90
+< psql:/home/highgo/test_sql/sql/tablespace.sql:53: Did not find any relation named "testschema.test_index2".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:53: Did not find any relation named "testschema.test_index2".
+99c99
+< psql:/home/highgo/test_sql/sql/tablespace.sql:58: Did not find any relation named "testschema.test_index1".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:58: Did not find any relation named "testschema.test_index1".
+101c101
+< psql:/home/highgo/test_sql/sql/tablespace.sql:59: Did not find any relation named "testschema.test_index2".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:59: Did not find any relation named "testschema.test_index2".
+110c110
+< psql:/home/highgo/test_sql/sql/tablespace.sql:63: Did not find any relation named "testschema.test_index1".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:63: Did not find any relation named "testschema.test_index1".
+112c112
+< psql:/home/highgo/test_sql/sql/tablespace.sql:64: Did not find any relation named "testschema.test_index2".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:64: Did not find any relation named "testschema.test_index2".
+124c124
+< psql:/home/highgo/test_sql/sql/tablespace.sql:70: Did not find any relation named "testschema.test_index1".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:70: Did not find any relation named "testschema.test_index1".
+126c126
+< psql:/home/highgo/test_sql/sql/tablespace.sql:71: Did not find any relation named "testschema.test_index2".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:71: Did not find any relation named "testschema.test_index2".
+131c131
+< psql:/home/highgo/test_sql/sql/tablespace.sql:74: Did not find any relation named "testschema.test_index1".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:74: Did not find any relation named "testschema.test_index1".
+133c133
+< psql:/home/highgo/test_sql/sql/tablespace.sql:75: Did not find any relation named "testschema.test_index2".
+---
+> psql:/home/postgres/build_out/sql/tablespace.sql:75: Did not find any relation named "testschema.test_index2".

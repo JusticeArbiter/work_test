@@ -1,0 +1,6 @@
+	Test results
+The test a total of : 165
+The test passed : 101 ,view details to /home/highgo/test_sql/log/pass
+The test failed : 64 ,view details to /home/highgo/test_sql/log/different
+The test file missing : 0 ,view details to /home/highgo/test_sql/log/filerror
+The test other questions : 0 ,view details to /home/highgo/test_sql/log/other

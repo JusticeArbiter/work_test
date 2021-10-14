@@ -1,0 +1,10 @@
+101,103c101
+< ERROR:  42704: type "city_budget" does not exist
+< LINE 4:  budget   city_budget
+<                   ^
+---
+> CREATE TABLE
+298c296
+< SELECT 141
+---
+> SELECT 140

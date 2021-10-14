@@ -1,0 +1,4 @@
+18c18
+< ERROR:  42704: type "widget" does not exist
+---
+> CREATE OPERATOR

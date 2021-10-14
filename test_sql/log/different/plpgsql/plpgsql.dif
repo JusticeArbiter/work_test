@@ -1,0 +1,16 @@
+2286a2287
+> NOTICE:  00000: caught numeric_value_out_of_range or cardinality_violation
+2289c2290
+<                 100
+---
+>                  -2
+2347a2349
+> NOTICE:  00000: nyeah nyeah, can't stop me
+2767c2769
+<                      0
+---
+>                      1
+3355c3357
+<  
+---
+>  t

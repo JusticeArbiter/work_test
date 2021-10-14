@@ -1,0 +1,257 @@
+--
+-- Hot Standby tests
+--
+-- hs_standby_allowed.sql
+--
+-- SELECT
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+select count(*) as should_be_2 from hs2;
+ should_be_2 
+-------------
+           2
+(1 row)
+
+select count(*) as should_be_3 from hs3;
+ should_be_3 
+-------------
+           3
+(1 row)
+
+COPY hs1 TO '/tmp/copy_test';
+COPY 1
+\! cat /tmp/copy_test
+1
+-- Access sequence directly
+select min_value as sequence_min_value from hsseq;
+ sequence_min_value 
+--------------------
+                  1
+(1 row)
+
+-- Transactions
+begin;
+BEGIN
+select count(*)  as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+end;
+COMMIT
+begin transaction read only;
+BEGIN
+select count(*)  as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+end;
+COMMIT
+begin transaction isolation level repeatable read;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+commit;
+COMMIT
+begin;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+commit;
+COMMIT
+begin;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+abort;
+ROLLBACK
+start transaction;
+START TRANSACTION
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+commit;
+COMMIT
+begin;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+rollback;
+ROLLBACK
+begin;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+savepoint s;
+SAVEPOINT
+select count(*) as should_be_2 from hs2;
+ should_be_2 
+-------------
+           2
+(1 row)
+
+commit;
+COMMIT
+begin;
+BEGIN
+select count(*) as should_be_1 from hs1;
+ should_be_1 
+-------------
+           1
+(1 row)
+
+savepoint s;
+SAVEPOINT
+select count(*) as should_be_2 from hs2;
+ should_be_2 
+-------------
+           2
+(1 row)
+
+release savepoint s;
+RELEASE
+select count(*) as should_be_2 from hs2;
+ should_be_2 
+-------------
+           2
+(1 row)
+
+savepoint s;
+SAVEPOINT
+select count(*) as should_be_3 from hs3;
+ should_be_3 
+-------------
+           3
+(1 row)
+
+rollback to savepoint s;
+ROLLBACK
+select count(*) as should_be_2 from hs2;
+ should_be_2 
+-------------
+           2
+(1 row)
+
+commit;
+COMMIT
+-- SET parameters
+-- has no effect on read only transactions, but we can still set it
+set synchronous_commit = on;
+SET
+show synchronous_commit;
+ synchronous_commit 
+--------------------
+ on
+(1 row)
+
+reset synchronous_commit;
+RESET
+discard temp;
+DISCARD TEMP
+discard all;
+DISCARD ALL
+-- CURSOR commands
+BEGIN;
+BEGIN
+DECLARE hsc CURSOR FOR select * from hs3;
+DECLARE CURSOR
+FETCH next from hsc;
+ col1 
+------
+  113
+(1 row)
+
+fetch first from hsc;
+ col1 
+------
+  113
+(1 row)
+
+fetch last from hsc;
+ col1 
+------
+  115
+(1 row)
+
+fetch 1 from hsc;
+ col1 
+------
+(0 rows)
+
+CLOSE hsc;
+CLOSE CURSOR
+COMMIT;
+COMMIT
+-- Prepared plans
+PREPARE hsp AS select count(*) from hs1;
+PREPARE
+PREPARE hsp_noexec (integer) AS insert into hs1 values ($1);
+PREPARE
+EXECUTE hsp;
+ count 
+-------
+     1
+(1 row)
+
+DEALLOCATE hsp;
+DEALLOCATE
+-- LOCK
+BEGIN;
+BEGIN
+LOCK hs1 IN ACCESS SHARE MODE;
+LOCK TABLE
+LOCK hs1 IN ROW SHARE MODE;
+LOCK TABLE
+LOCK hs1 IN ROW EXCLUSIVE MODE;
+LOCK TABLE
+COMMIT;
+COMMIT
+-- LOAD
+-- should work, easier if there is no test for that...
+-- ALLOWED COMMANDS
+CHECKPOINT;
+CHECKPOINT
+discard all;
+DISCARD ALL

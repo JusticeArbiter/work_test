@@ -1,0 +1,54 @@
+10c10
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+15c15,16
+< ERROR:  42704: type widget does not exist
+---
+> NOTICE:  42809: argument type widget is only a shell
+> CREATE FUNCTION
+22c23
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+27c28,29
+< ERROR:  42704: type city_budget does not exist
+---
+> NOTICE:  42809: argument type city_budget is only a shell
+> CREATE FUNCTION
+32c34
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/refint.so": Permission denied
+---
+> CREATE FUNCTION
+37c39
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/refint.so": Permission denied
+---
+> CREATE FUNCTION
+42c44
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/autoinc.so": Permission denied
+---
+> CREATE FUNCTION
+47c49
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+52c54
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+57c59
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+62c64
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+67c69
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> CREATE FUNCTION
+97c99
+< ERROR:  42501: could not access file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so": Permission denied
+---
+> ERROR:  42883: could not find function "nosuchsymbol" in file "/home/postgres/postgresql-9.5.10/src/test/regress/regress.so"

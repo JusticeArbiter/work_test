@@ -1,0 +1,43 @@
+--
+-- Hot Standby tests
+--
+-- hs_primary_setup.sql
+--
+drop table if exists hs1;
+NOTICE:  00000: table "hs1" does not exist, skipping
+DROP TABLE
+create table hs1 (col1 integer primary key);
+CREATE TABLE
+insert into hs1 values (1);
+INSERT 0 1
+drop table if exists hs2;
+NOTICE:  00000: table "hs2" does not exist, skipping
+DROP TABLE
+create table hs2 (col1 integer primary key);
+CREATE TABLE
+insert into hs2 values (12);
+INSERT 0 1
+insert into hs2 values (13);
+INSERT 0 1
+drop table if exists hs3;
+NOTICE:  00000: table "hs3" does not exist, skipping
+DROP TABLE
+create table hs3 (col1 integer primary key);
+CREATE TABLE
+insert into hs3 values (113);
+INSERT 0 1
+insert into hs3 values (114);
+INSERT 0 1
+insert into hs3 values (115);
+INSERT 0 1
+DROP sequence if exists hsseq;
+NOTICE:  00000: sequence "hsseq" does not exist, skipping
+DROP SEQUENCE
+create sequence hsseq;
+CREATE SEQUENCE
+SELECT pg_switch_xlog();
+ pg_switch_xlog 
+----------------
+ 0/702BBF8
+(1 row)
+

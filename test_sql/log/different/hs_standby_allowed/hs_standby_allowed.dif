@@ -1,0 +1,4 @@
+26c26
+< COPY 1
+---
+> ERROR:  42501: could not open file "/tmp/copy_test" for writing: Permission denied
